@@ -30,7 +30,7 @@ public class AuthUser extends Auditable implements BaseEntity {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            schema = "mentor",
+            schema = "auth",
             name = "mentor_subject",
             joinColumns =  { @JoinColumn(name = "mentor_id") } ,
             inverseJoinColumns = { @JoinColumn(name = "subject_id") })

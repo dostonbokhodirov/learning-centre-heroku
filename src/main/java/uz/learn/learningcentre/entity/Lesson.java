@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(schema = "group", name = "lesson")
+@Table(schema = "grouping", name = "lesson")
 public class Lesson extends Auditable {
 
 
