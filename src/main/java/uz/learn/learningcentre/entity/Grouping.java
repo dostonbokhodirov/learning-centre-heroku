@@ -31,8 +31,8 @@ public class Grouping extends Auditable {
     @JoinTable(
             name = "student_group",
             schema = "student",
-            joinColumns = "group_id",
-            inverseJoinColumns = "student_id"
+            joinColumns = {@JoinColumn(name = "group_id")},
+            inverseJoinColumns = {@JoinColumn(name = "student_id")}
     )
     private List<Student> students;
 
