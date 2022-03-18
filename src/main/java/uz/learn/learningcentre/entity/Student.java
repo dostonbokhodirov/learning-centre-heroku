@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(schema = "auth", name = "student")
+@Table(schema = "student", name = "student")
 public class Student extends Auditable {
 
     @Column(nullable = false)

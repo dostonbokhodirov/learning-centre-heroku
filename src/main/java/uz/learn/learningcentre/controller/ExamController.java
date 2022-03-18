@@ -1,5 +1,7 @@
 package uz.learn.learningcentre.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
@@ -12,6 +14,7 @@ import uz.learn.learningcentre.service.ExamService;
 
 import java.util.List;
 
+@RestController
 public class ExamController extends AbstractController<ExamService>
         implements GenericCrudController<ExamCreateDto, ExamUpdateDto>, GenericController<ExamDto> {
 
