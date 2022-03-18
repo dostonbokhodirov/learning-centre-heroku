@@ -6,12 +6,13 @@ import uz.learn.learningcentre.dto.auth.AuthUserDto;
 import uz.learn.learningcentre.dto.auth.AuthUserUpdateDto;
 import uz.learn.learningcentre.entity.AuthUser;
 import uz.learn.learningcentre.mapper.base.BaseMapper;
+import uz.learn.learningcentre.mapper.base.GenericMapper;
 
 import java.util.List;
 
 
 @Mapper(componentModel = "spring")
-public interface AuthUserMapper extends BaseMapper<AuthUser, AuthUserDto, AuthUserCreateDto, AuthUserUpdateDto> {
+public interface AuthUserMapper extends GenericMapper<AuthUser, AuthUserDto, AuthUserCreateDto, AuthUserUpdateDto> {
 
 
     @Override

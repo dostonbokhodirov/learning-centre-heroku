@@ -6,6 +6,6 @@ import uz.learn.learningcentre.service.base.BaseService;
 @RequiredArgsConstructor
 public abstract class AbstractController<S extends BaseService> implements BaseController {
 
-    private final S service;
+    protected final S service;
 
 }
