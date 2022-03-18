@@ -12,8 +12,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(schema = "group", name = "group")
-public class Group extends Auditable {
+@Table(schema = "grouping", name = "grouping")
+public class Grouping extends Auditable {
 
     @Column
     private String name;
