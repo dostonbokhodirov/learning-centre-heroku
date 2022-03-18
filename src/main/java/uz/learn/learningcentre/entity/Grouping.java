@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(schema = "group", name = "group")
-public class Group extends Auditable {
+public class Grouping extends Auditable {
 
     @Column
     private String name;
@@ -31,8 +31,8 @@ public class Group extends Auditable {
     @JoinTable(
             name = "student_group",
             schema = "student",
-            joinColumns = "group_id",
-            inverseJoinColumns = "student_id"
+            joinColumns = {@JoinColumn(name = "group_id")},
+            inverseJoinColumns = {@JoinColumn(name = "student_id")}
     )
     private List<Student> students;
 
