@@ -4,17 +4,21 @@ import uz.learn.learningcentre.dto.base.BaseDto;
 import uz.learn.learningcentre.dto.base.GenericDto;
 import uz.learn.learningcentre.entity.base.BaseEntity;
 
-public interface GenericValidator <
+import java.io.Serializable;
+
+public interface GenericValidator<
         E extends BaseEntity,
         D extends GenericDto,
         CD extends BaseDto,
-        UD extends GenericDto> extends BaseValidator {
+        UD extends GenericDto,
+        I extends Serializable> extends BaseValidator {
 
 
-    boolean validOnUpdate(UD ud);
+    void validOnUpdate(UD ud);
 
-    boolean validOnCreate(CD cd);
+    void validOnCreate(CD cd);
 
+    void validOnId(I id);
 
 
 }

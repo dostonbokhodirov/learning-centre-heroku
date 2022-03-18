@@ -8,15 +8,20 @@ import uz.learn.learningcentre.entity.AuthUser;
 import uz.learn.learningcentre.validator.base.GenericValidator;
 
 @Component
-public class AuthUserValidator implements GenericValidator<AuthUser, AuthUserDto, AuthUserCreateDto, AuthUserUpdateDto> {
+public class AuthUserValidator implements GenericValidator<AuthUser, AuthUserDto, AuthUserCreateDto, AuthUserUpdateDto, Long> {
 
     @Override
-    public boolean validOnUpdate(AuthUserUpdateDto authUserUpdateDto) {
-        return false;
+    public void validOnUpdate(AuthUserUpdateDto authUserUpdateDto) {
+
     }
 
     @Override
-    public boolean validOnCreate(AuthUserCreateDto authUserCreateDto) {
-        return false;
+    public void validOnCreate(AuthUserCreateDto authUserCreateDto) {
+
+    }
+
+    @Override
+    public void validOnId(Long id) {
+
     }
 }

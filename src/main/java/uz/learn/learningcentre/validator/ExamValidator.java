@@ -5,20 +5,24 @@ import uz.learn.learningcentre.dto.exam.ExamCreateDto;
 import uz.learn.learningcentre.dto.exam.ExamDto;
 import uz.learn.learningcentre.dto.exam.ExamUpdateDto;
 import uz.learn.learningcentre.entity.Exam;
-import uz.learn.learningcentre.validator.base.BaseValidator;
 import uz.learn.learningcentre.validator.base.GenericValidator;
 
 
 @Component
-public class ExamValidator implements GenericValidator<Exam, ExamDto, ExamCreateDto, ExamUpdateDto> {
+public class ExamValidator implements GenericValidator<Exam, ExamDto, ExamCreateDto, ExamUpdateDto, Long> {
 
     @Override
-    public boolean validOnUpdate(ExamUpdateDto examUpdateDto) {
-        return false;
+    public void validOnUpdate(ExamUpdateDto examUpdateDto) {
+
     }
 
     @Override
-    public boolean validOnCreate(ExamCreateDto examCreateDto) {
-        return false;
+    public void validOnCreate(ExamCreateDto examCreateDto) {
+
+    }
+
+    @Override
+    public void validOnId(Long id) {
+
     }
 }
