@@ -2,6 +2,7 @@ package uz.learn.learningcentre.service;
 
 import org.springframework.stereotype.Service;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
+import uz.learn.learningcentre.criteria.ExamCriteria;
 import uz.learn.learningcentre.dto.exam.ExamCreateDto;
 import uz.learn.learningcentre.dto.exam.ExamDto;
 import uz.learn.learningcentre.dto.exam.ExamUpdateDto;
@@ -19,7 +20,7 @@ import java.util.List;
 @Service
 public class ExamService extends AbstractService<ExamMapper, ExamValidator, ExamRepository>
         implements GenericCrudService<ExamDto, ExamCreateDto, ExamUpdateDto>,
-        GenericService<ExamDto> {
+        GenericService<ExamDto, ExamCriteria> {
 
 
     public ExamService(ExamMapper mapper, ExamValidator validator, ExamRepository repository) {
@@ -47,7 +48,8 @@ public class ExamService extends AbstractService<ExamMapper, ExamValidator, Exam
     }
 
     @Override
-    public ResponseEntity<DataDto<List<ExamDto>>> getAll() {
+    public ResponseEntity<DataDto<List<ExamDto>>> getAll(ExamCriteria criteria) {
         return null;
     }
+
 }

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import uz.learn.learningcentre.criteria.AuthUserCriteria;
 import uz.learn.learningcentre.dto.auth.AuthUserCreateDto;
 import uz.learn.learningcentre.dto.auth.AuthUserDto;
 import uz.learn.learningcentre.dto.auth.AuthUserUpdateDto;
@@ -25,7 +26,7 @@ import java.util.List;
 @Service
 public class AuthUserService extends AbstractService<AuthUserMapper, AuthUserValidator, AuthUserRepository>
         implements UserDetailsService, GenericCrudService<AuthUserDto, AuthUserCreateDto, AuthUserUpdateDto>,
-        GenericService<AuthUserDto> {
+        GenericService<AuthUserDto, AuthUserCriteria> {
 
 
     public AuthUserService(AuthUserMapper mapper, AuthUserValidator validator, AuthUserRepository repository) {
@@ -54,7 +55,7 @@ public class AuthUserService extends AbstractService<AuthUserMapper, AuthUserVal
     }
 
     @Override
-    public ResponseEntity<DataDto<List<AuthUserDto>>> getAll() {
+    public ResponseEntity<DataDto<List<AuthUserDto>>> getAll(AuthUserCriteria criteria) {
         return null;
     }
 
