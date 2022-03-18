@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(schema = "group", name = "group")
+@Table(schema = "grouping", name = "grouping")
 public class Grouping extends Auditable {
 
     @Column
