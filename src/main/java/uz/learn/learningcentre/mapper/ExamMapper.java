@@ -1,5 +1,6 @@
 package uz.learn.learningcentre.mapper;
 
+import org.mapstruct.Mapper;
 import uz.learn.learningcentre.dto.exam.ExamCreateDto;
 import uz.learn.learningcentre.dto.exam.ExamDto;
 import uz.learn.learningcentre.dto.exam.ExamUpdateDto;
@@ -9,6 +10,7 @@ import uz.learn.learningcentre.mapper.base.GenericMapper;
 
 import java.util.List;
 
+@Mapper(componentModel = "spring")
 public interface ExamMapper extends GenericMapper<Exam, ExamDto, ExamCreateDto, ExamUpdateDto> {
 
 
