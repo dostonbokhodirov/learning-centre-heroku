@@ -33,12 +33,11 @@ public class AppErrorDto {
     }
 
 
-    public AppErrorDto(HttpStatus status, String message, String path) {
+    public AppErrorDto(HttpStatus status, String message) {
         this.timestamp = Timestamp.valueOf(LocalDateTime.now());
         this.status = status.value();
         this.error = status.getReasonPhrase();
         this.message = message;
-        this.path = path;
     }
 
 

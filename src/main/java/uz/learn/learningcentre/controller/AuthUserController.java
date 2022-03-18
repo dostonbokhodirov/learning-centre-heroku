@@ -1,6 +1,7 @@
 package uz.learn.learningcentre.controller;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uz.learn.learningcentre.controller.base.AbstractController;
@@ -17,19 +18,19 @@ import java.util.List;
 
 
 @RestController
-public class AuthController extends AbstractController<AuthUserService>
+public class AuthUserController extends AbstractController<AuthUserService>
         implements GenericCrudController<AuthUserCreateDto, AuthUserUpdateDto>,
         GenericController<AuthUserDto> {
 
 
-    public AuthController(AuthUserService service) {
+    public AuthUserController(AuthUserService service) {
         super(service);
     }
 
 
     @Override
-    public ResponseEntity<DataDto<Long>> create(AuthUserCreateDto authUserCreateDto) {
-        return null;
+    public ResponseEntity<DataDto<Long>> create(@RequestBody AuthUserCreateDto authUserCreateDto) {
+        return service.create(authUserCreateDto);
     }
 
     @Override
@@ -39,13 +40,13 @@ public class AuthController extends AbstractController<AuthUserService>
 
     @Override
     @RequestMapping(value = "/{id}")
-    public ResponseEntity<DataDto<Boolean>> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<DataDto<Boolean>> delete(@PathVariable(value = "id") Long id) {
         return null;
     }
 
     @Override
-    public ResponseEntity<DataDto<AuthUserDto>> get(Long id) {
-        return null;
+    public ResponseEntity<DataDto<AuthUserDto>> get(@PathVariable(value = "id") Long id) {
+        return service.get(id);
     }
 
     @Override
