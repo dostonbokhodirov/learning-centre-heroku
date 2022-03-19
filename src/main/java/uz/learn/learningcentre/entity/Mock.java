@@ -22,6 +22,6 @@ public class Mock {
     @Column(name = "created_at", columnDefinition = "TIMESTAMP default NOW()")
     private LocalDate createdAt;
 
-    private boolean enabled;
+    private boolean enabled;//
 
 }

@@ -25,6 +25,9 @@ public class Grouping extends Auditable {
     private Long mentorId;
 
     @Column
+    private Boolean available; // nabor course da bormi or not
+
+    @Column
     private LocalDate closedDate; // group tugatilgan sanasi
 
     @ManyToMany

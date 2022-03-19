@@ -18,6 +18,4 @@ public class Subject extends Auditable {
 
 
 
-
-
 }

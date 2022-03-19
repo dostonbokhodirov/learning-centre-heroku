@@ -7,6 +7,7 @@ import uz.learn.learningcentre.entity.base.Auditable;
 import uz.learn.learningcentre.enums.StudyType;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -27,7 +28,9 @@ public class Student extends Auditable {
 
     @Enumerated(EnumType.STRING)
     private StudyType studyType; // Grant / Contract / None
-    
+
+    private String entranceYear;
+
     private String mothersNumber;
 
     private String fathersNumber;
