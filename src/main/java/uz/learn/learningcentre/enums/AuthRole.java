@@ -1,5 +1,7 @@
 package uz.learn.learningcentre.enums;
 
+import java.util.Arrays;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,6 +26,10 @@ public enum AuthRole {
 
     private int degree;
 
+    public static boolean isAuthRole(AuthRole role) {
+        return Arrays.stream(values()).anyMatch(authRole -> authRole.name().equals(String.valueOf(role)));
+    }
+
 
     // This method returns the list of names, if the degree of that names smaller than input role
     public List<String> getByDegreeBelow(AuthRole role) {
@@ -41,6 +47,6 @@ public enum AuthRole {
         return Stream.of(AuthRole.values()).collect(Collectors.toList());
     }
 
-
 }
+
 

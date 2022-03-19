@@ -1,8 +1,10 @@
 package uz.learn.learningcentre.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import uz.learn.learningcentre.entity.base.Auditable;
 import uz.learn.learningcentre.enums.StudyType;
 
@@ -29,6 +31,7 @@ public class Student extends Auditable {
     @Enumerated(EnumType.STRING)
     private StudyType studyType; // Grant / Contract / None
 
+    @Column
     private String entranceYear;
 
     private String mothersNumber;
