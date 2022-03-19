@@ -21,7 +21,6 @@ import uz.learn.learningcentre.service.base.GenericCrudService;
 import uz.learn.learningcentre.service.base.GenericService;
 import uz.learn.learningcentre.validator.AuthUserValidator;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

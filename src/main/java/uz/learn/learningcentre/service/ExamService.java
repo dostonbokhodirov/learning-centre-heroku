@@ -2,6 +2,7 @@ package uz.learn.learningcentre.service;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.learn.learningcentre.criteria.ExamCriteria;
@@ -101,7 +102,7 @@ public class ExamService extends AbstractService<ExamMapper, ExamValidator, Exam
 
     @Override
     public ResponseEntity<DataDto<List<ExamDto>>> getAll(ExamCriteria criteria) {
-        Pageable pageable = PageRequest.of(criteria.getPage(), criteria.getSize());
+        Pageable pageable = PageRequest.of(criteria.getPage(), criteria.getSize(), Sort.by("ball").descending());
         List<Exam> examList;
         if (Objects.nonNull(criteria.getGroupId())) {
             examList = repository.findAllByGroupId(criteria.getGroupId(), pageable);

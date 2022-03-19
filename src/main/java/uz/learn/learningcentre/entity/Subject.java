@@ -16,6 +16,4 @@ public class Subject extends Auditable {
     @Column(nullable = false)
     private String name;
 
-
-
 }
