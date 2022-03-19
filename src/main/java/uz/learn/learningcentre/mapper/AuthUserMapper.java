@@ -14,7 +14,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface AuthUserMapper extends GenericMapper<AuthUser, AuthUserDto, AuthUserCreateDto, AuthUserUpdateDto> {
 
-
     @Override
     AuthUser fromDto(AuthUserDto dto);
 

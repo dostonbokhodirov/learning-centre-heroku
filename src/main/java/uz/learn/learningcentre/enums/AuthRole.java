@@ -24,7 +24,7 @@ public enum AuthRole {
     ASSISTANT(5),
     RECEPTIONIST(5);
 
-    private int degree;
+    private final int degree;
 
     public static boolean isAuthRole(AuthRole role) {
         return Arrays.stream(values()).anyMatch(authRole -> authRole.name().equals(String.valueOf(role)));

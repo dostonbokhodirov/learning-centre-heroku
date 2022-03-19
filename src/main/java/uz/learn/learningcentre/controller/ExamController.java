@@ -1,6 +1,6 @@
 package uz.learn.learningcentre.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
@@ -15,36 +15,42 @@ import uz.learn.learningcentre.service.ExamService;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/exam")
 public class ExamController extends AbstractController<ExamService>
         implements GenericCrudController<ExamCreateDto, ExamUpdateDto>, GenericController<ExamDto, ExamCriteria> {
-
 
     public ExamController(ExamService service) {
         super(service);
     }
 
-    @Override
-    public ResponseEntity<DataDto<ExamDto>> get(Long id) {
-        return null;
-    }
 
     @Override
-    public ResponseEntity<DataDto<List<ExamDto>>> getAll(ExamCriteria criteria) {
-        return null;
-    }
-
-    @Override
+    @PostMapping("/create")
     public ResponseEntity<DataDto<Long>> create(ExamCreateDto examCreateDto) {
-        return null;
+        return service.create(examCreateDto);
     }
 
     @Override
+    @PostMapping("/update")
     public ResponseEntity<DataDto<Long>> update(ExamUpdateDto examUpdateDto) {
-        return null;
+        return service.update(examUpdateDto);
     }
 
     @Override
-    public ResponseEntity<DataDto<Boolean>> delete(Long id) {
-        return null;
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<DataDto<Boolean>> delete(@PathVariable(value = "id") Long id) {
+        return service.delete(id);
+    }
+
+    @Override
+    @GetMapping(value = "/get/{id}")
+    public ResponseEntity<DataDto<ExamDto>> get(@PathVariable(value = "id") Long id) {
+        return service.get(id);
+    }
+
+    @Override
+    @GetMapping(value = "/list")
+    public ResponseEntity<DataDto<List<ExamDto>>> getAll(ExamCriteria criteria) {
+        return service.getAll(criteria);
     }
 }
