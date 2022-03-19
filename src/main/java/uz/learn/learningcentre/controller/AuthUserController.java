@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
+import uz.learn.learningcentre.criteria.AuthUserCriteria;
 import uz.learn.learningcentre.dto.auth.AuthUserCreateDto;
 import uz.learn.learningcentre.dto.auth.AuthUserDto;
 import uz.learn.learningcentre.dto.auth.AuthUserUpdateDto;
@@ -20,7 +21,7 @@ import java.util.List;
 @RestController
 public class AuthUserController extends AbstractController<AuthUserService>
         implements GenericCrudController<AuthUserCreateDto, AuthUserUpdateDto>,
-        GenericController<AuthUserDto> {
+        GenericController<AuthUserDto, AuthUserCriteria> {
 
 
     public AuthUserController(AuthUserService service) {
@@ -35,13 +36,13 @@ public class AuthUserController extends AbstractController<AuthUserService>
 
     @Override
     public ResponseEntity<DataDto<Long>> update(AuthUserUpdateDto authUserUpdateDto) {
-        return null;
+        return service.update(authUserUpdateDto);
     }
 
     @Override
     @RequestMapping(value = "/{id}")
     public ResponseEntity<DataDto<Boolean>> delete(@PathVariable(value = "id") Long id) {
-        return null;
+        return service.delete(id);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class AuthUserController extends AbstractController<AuthUserService>
     }
 
     @Override
-    public ResponseEntity<DataDto<List<AuthUserDto>>> getAll() {
-        return null;
+    public ResponseEntity<DataDto<List<AuthUserDto>>> getAll(AuthUserCriteria criteria) {
+        return service.getAll(criteria);
     }
 }

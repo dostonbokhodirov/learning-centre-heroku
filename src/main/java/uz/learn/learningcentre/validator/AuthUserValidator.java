@@ -15,7 +15,7 @@ public class AuthUserValidator implements GenericValidator<AuthUser, AuthUserDto
 
     @Override
     public void validOnUpdate(AuthUserUpdateDto authUserUpdateDto) {
-
+        validOnId(authUserUpdateDto.getId());
     }
 
     @Override

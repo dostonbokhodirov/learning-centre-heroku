@@ -1,10 +1,10 @@
 package uz.learn.learningcentre.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
+import uz.learn.learningcentre.criteria.ExamCriteria;
 import uz.learn.learningcentre.dto.exam.ExamCreateDto;
 import uz.learn.learningcentre.dto.exam.ExamDto;
 import uz.learn.learningcentre.dto.exam.ExamUpdateDto;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 public class ExamController extends AbstractController<ExamService>
-        implements GenericCrudController<ExamCreateDto, ExamUpdateDto>, GenericController<ExamDto> {
+        implements GenericCrudController<ExamCreateDto, ExamUpdateDto>, GenericController<ExamDto, ExamCriteria> {
 
 
     public ExamController(ExamService service) {
@@ -29,7 +29,7 @@ public class ExamController extends AbstractController<ExamService>
     }
 
     @Override
-    public ResponseEntity<DataDto<List<ExamDto>>> getAll() {
+    public ResponseEntity<DataDto<List<ExamDto>>> getAll(ExamCriteria criteria) {
         return null;
     }
 
