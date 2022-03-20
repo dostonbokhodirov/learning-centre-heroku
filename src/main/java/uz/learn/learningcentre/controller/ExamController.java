@@ -50,7 +50,7 @@ public class ExamController extends AbstractController<ExamService>
 
     @Override
     @GetMapping(value = "/list")
-    public ResponseEntity<DataDto<List<ExamDto>>> getAll(ExamCriteria criteria) {
-        return service.getAll(criteria);
+    public ResponseEntity<DataDto<List<ExamDto>>> getAll(ExamCriteria examCriteria) {
+        return service.getAll(examCriteria);
     }
 }

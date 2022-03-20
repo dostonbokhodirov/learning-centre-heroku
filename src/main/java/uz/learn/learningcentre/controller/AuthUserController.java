@@ -35,7 +35,7 @@ public class AuthUserController extends AbstractController<AuthUserService>
 
     @Override
     @PostMapping("/update")
-    public ResponseEntity<DataDto<Long>> update(AuthUserUpdateDto authUserUpdateDto) {
+    public ResponseEntity<DataDto<Long>> update(@RequestBody AuthUserUpdateDto authUserUpdateDto) {
         return service.update(authUserUpdateDto);
     }
 
@@ -53,7 +53,7 @@ public class AuthUserController extends AbstractController<AuthUserService>
 
     @Override
     @GetMapping(value = "/list")
-    public ResponseEntity<DataDto<List<AuthUserDto>>> getAll(AuthUserCriteria criteria) {
-        return service.getAll(criteria);
+    public ResponseEntity<DataDto<List<AuthUserDto>>> getAll(AuthUserCriteria authUserCriteria) {
+        return service.getAll(authUserCriteria);
     }
 }

@@ -13,5 +13,4 @@ public abstract class AbstractService<M extends BaseMapper, V extends BaseValida
     protected final V validator;
     protected final R repository;
 
-
 }
