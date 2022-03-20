@@ -2,8 +2,7 @@ package uz.learn.learningcentre.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
@@ -18,7 +17,7 @@ import uz.learn.learningcentre.service.GroupingService;
 import java.util.List;
 
 @RestController
-@RequestMapping( "/grouping/*" )
+@RequestMapping(value = "/grouping")
 public class GroupingController extends AbstractController<GroupingService>
         implements GenericCrudController<GroupingCreateDto, GroupingUpdateDto>, GenericController<GroupingDto, GroupingCriteria> {
 
@@ -29,27 +28,32 @@ public class GroupingController extends AbstractController<GroupingService>
 
 
     @Override
+    @PostMapping("/create")
     public ResponseEntity<DataDto<Long>> create( GroupingCreateDto groupingCreateDto ) {
         return service.create( groupingCreateDto );
     }
 
     @Override
+    @PostMapping("/update")
     public ResponseEntity<DataDto<Long>> update( GroupingUpdateDto groupingUpdateDto ) {
         return service.update( groupingUpdateDto );
     }
 
     @Override
-    public ResponseEntity<DataDto<Boolean>> delete( Long id ) {
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<DataDto<Boolean>> delete(@PathVariable Long id ) {
         return service.delete( id );
     }
 
 
     @Override
-    public ResponseEntity<DataDto<GroupingDto>> get( Long id ) {
+    @GetMapping("/get/{id}")
+    public ResponseEntity<DataDto<GroupingDto>> get(@PathVariable Long id ) {
         return service.get( id );
     }
 
     @Override
+    @GetMapping("/list")
     public ResponseEntity<DataDto<List<GroupingDto>>> getAll( GroupingCriteria criteria ) {
         return service.getAll( criteria );
     }

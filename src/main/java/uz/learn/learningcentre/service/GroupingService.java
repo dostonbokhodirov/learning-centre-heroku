@@ -49,7 +49,7 @@ public class GroupingService extends AbstractService<GroupingMapper, GroupingVal
         try {
             validator.validOnCreate( groupingCreateDto );
             Subject subject = subjectRepository.findByName( groupingCreateDto.getSubject() );
-            AuthUser mentor = userRepository.findByName( groupingCreateDto.getMentor() );
+            AuthUser mentor = userRepository.findByFullName( groupingCreateDto.getMentor() );
             Grouping grouping = mapper.fromCreateDto( groupingCreateDto );
             grouping.setSubjectId( subject.getId() );
             grouping.setMentorId( mentor.getId() );

@@ -13,7 +13,6 @@ import uz.learn.learningcentre.validator.base.BaseValidator;
 
 import java.util.List;
 
-@Component
 @Mapper(componentModel = "spring",nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface GroupingMapper extends GenericMapper<
         Grouping,

@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uz.learn.learningcentre.dto.base.GenericDto;
-import uz.learn.learningcentre.entity.Student;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -25,8 +23,6 @@ public class GroupingUpdateDto extends GenericDto {
     private Boolean available;
 
     private LocalDate closedDate;
-
-    private List<Student> students;
 
     private Double price;
 }
