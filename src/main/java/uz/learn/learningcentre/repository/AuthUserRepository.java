@@ -11,4 +11,6 @@ import java.util.List;
 public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, BaseRepository {
 
     List<AuthUser> findAllByRole(AuthRole role, Pageable pageable);
+
+    AuthUser findByName( String mentor );
 }

@@ -1,0 +1,22 @@
+package uz.learn.learningcentre.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import uz.learn.learningcentre.dto.base.BaseDto;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class GroupingCreateDto implements BaseDto {
+
+    private String name;
+
+
+    private String subject;
+
+
+    private String mentor;
+}
