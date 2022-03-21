@@ -7,4 +7,6 @@ import uz.learn.learningcentre.dto.base.GenericDto;
 @Getter
 @Setter
 public class ExamUpdateDto extends GenericDto {
+    private Integer ball;
+    private String title;
 }

@@ -10,9 +10,9 @@ import uz.learn.learningcentre.mapper.base.GenericMapper;
 
 import java.util.List;
 
+
 @Mapper(componentModel = "spring")
 public interface ExamMapper extends GenericMapper<Exam, ExamDto, ExamCreateDto, ExamUpdateDto> {
-
 
     @Override
     Exam fromDto(ExamDto dto);

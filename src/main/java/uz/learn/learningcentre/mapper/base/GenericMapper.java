@@ -1,5 +1,7 @@
 package uz.learn.learningcentre.mapper.base;
 
+import org.mapstruct.MappingTarget;
+
 import java.util.List;
 
 public interface GenericMapper<E, D, CD, UD> extends BaseMapper {
@@ -14,6 +16,8 @@ public interface GenericMapper<E, D, CD, UD> extends BaseMapper {
     List<D> toDto(List<E> entities);
 
     E fromUpdateDto(UD ud);
+
+    E fromUpdateDto(UD ud,@MappingTarget E e);
 
     List<E> fromUpdateDto(List<UD> ud);
 

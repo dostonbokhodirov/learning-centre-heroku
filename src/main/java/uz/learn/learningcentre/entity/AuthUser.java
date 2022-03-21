@@ -28,7 +28,7 @@ public class AuthUser extends Auditable implements BaseEntity {
     @Column
     private Short experienceYear;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             schema = "auth",
             name = "mentor_subject",

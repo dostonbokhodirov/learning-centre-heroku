@@ -6,6 +6,5 @@ import uz.learn.learningcentre.criteria.base.AbstractCriteria;
 
 @Getter
 @Setter
-public class ExamCriteria extends AbstractCriteria {
-    private Long groupId;
+public class SubjectCriteria extends AbstractCriteria {
 }
