@@ -11,7 +11,7 @@ import java.util.List;
 public interface AttendanceRepository extends JpaRepository<Attendance, Long>, BaseRepository {
 
 
-    @Query(value = "select * from attendance.attendance where created_by = :teacherId and group_id = :groupId ", nativeQuery = true)
-    List<Attendance> findAttendanceByTeacherId(Long teacherId, Long groupId);
+    @Query(value = "select  * from attendance.attendance where student_id = :studentId and group_id = :groupId", nativeQuery = true)
+    List<Attendance> findStudentAttendance(Long studentId, Long groupId);
 
 }

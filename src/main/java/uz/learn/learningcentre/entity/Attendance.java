@@ -22,4 +22,6 @@ public class Attendance extends Auditable {
     private Boolean here;// null if here / true if reasonable / false if reason not found(send message)
 
 
+    private Long attendanceContainerId;
+
 }

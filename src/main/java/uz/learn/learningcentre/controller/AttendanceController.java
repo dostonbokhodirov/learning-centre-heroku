@@ -12,6 +12,7 @@ import uz.learn.learningcentre.criteria.base.BaseCriteria;
 import uz.learn.learningcentre.dto.attendance.AttendanceCreateDto;
 import uz.learn.learningcentre.dto.attendance.AttendanceDto;
 import uz.learn.learningcentre.dto.attendance.AttendanceUpdateDto;
+import uz.learn.learningcentre.entity.AttendanceContainer;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.AttendanceService;
@@ -41,9 +42,15 @@ public class AttendanceController extends AbstractController<AttendanceService>
         return service.getAll(criteria);
     }
 
-    @RequestMapping(value = "list/{teacherId}{groupId}", method = RequestMethod.GET)
-    public ResponseEntity<DataDto<List<AttendanceDto>>> getOneGroupAttendance(@PathVariable("teacherId") Long teacherId, @PathVariable("groupId") Long groupId) {
-        return service.getOneGroupAttendance(teacherId, groupId);
+
+    @RequestMapping(value = "list/{groupId}", method = RequestMethod.GET)
+    public ResponseEntity<DataDto<List<AttendanceContainer>>> getOneGroupAttendanceContainer(@PathVariable("groupId") Long groupId) {
+        return service.getOneGroupAttendanceContainer(groupId);
+    }
+
+    @RequestMapping(value = "list/{studentId}{groupId}", method = RequestMethod.GET)
+    public ResponseEntity<DataDto<List<AttendanceDto>>> getStudentAttendance(@PathVariable("studentId") Long studentId, @PathVariable("groupId") Long groupId) {
+        return service.getStudentAttendance(studentId, groupId);
     }
 
     @Override

@@ -7,8 +7,10 @@ import uz.learn.learningcentre.dto.attendance.AttendanceCreateDto;
 import uz.learn.learningcentre.dto.attendance.AttendanceDto;
 import uz.learn.learningcentre.dto.attendance.AttendanceUpdateDto;
 import uz.learn.learningcentre.entity.Attendance;
+import uz.learn.learningcentre.entity.AttendanceContainer;
 import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.mapper.AttendanceMapper;
+import uz.learn.learningcentre.repository.AttendanceContainerRepository;
 import uz.learn.learningcentre.repository.AttendanceRepository;
 import uz.learn.learningcentre.response.AppErrorDto;
 import uz.learn.learningcentre.response.DataDto;
@@ -26,14 +28,21 @@ public class AttendanceService extends AbstractService<AttendanceMapper, Attenda
         implements GenericCrudService<AttendanceDto, AttendanceCreateDto, AttendanceUpdateDto>,
         GenericService<AttendanceDto, AttendanceCriteria> {
 
+    private final AttendanceContainerRepository containerRepository;
 
-    public AttendanceService(AttendanceMapper mapper, AttendanceValidator validator, AttendanceRepository repository) {
+    public AttendanceService(AttendanceMapper mapper, AttendanceValidator validator, AttendanceRepository repository, AttendanceRepository attendanceRepository, AttendanceContainerRepository containerRepository) {
         super(mapper, validator, repository);
+        this.containerRepository = containerRepository;
     }
 
     @Override
     public ResponseEntity<DataDto<Long>> create(AttendanceCreateDto attendanceCreateDto) {
         validator.validOnCreate(attendanceCreateDto);
+
+        AttendanceContainer attendanceContainer = new AttendanceContainer();
+        attendanceContainer.setGroupId(attendanceCreateDto.getGroupId());
+        containerRepository.save(attendanceContainer);
+
         Attendance attendance = repository.save(mapper.fromCreateDto(attendanceCreateDto));
         return new ResponseEntity<>(new DataDto<>(attendance.getId()));
     }
@@ -78,14 +87,20 @@ public class AttendanceService extends AbstractService<AttendanceMapper, Attenda
 
     @Override
     public ResponseEntity<DataDto<List<AttendanceDto>>> getAll(AttendanceCriteria criteria) {
-
         return null;
     }
 
 
     //show one group attendance by groupId and teacherId
-    public ResponseEntity<DataDto<List<AttendanceDto>>> getOneGroupAttendance(Long teacherId, Long groupId) {
-        List<AttendanceDto> attendanceDtos = mapper.toDto(repository.findAttendanceByTeacherId(teacherId, groupId));
+    public ResponseEntity<DataDto<List<AttendanceContainer>>> getOneGroupAttendanceContainer(Long groupId) {
+        List<AttendanceContainer> attendanceContainerList = containerRepository.findAllByGroupId(groupId);
+        return new ResponseEntity<>(new DataDto<>(attendanceContainerList));
+    }
+
+
+    //show all attendances of student (inside the group)
+    public ResponseEntity<DataDto<List<AttendanceDto>>> getStudentAttendance(Long studentId, Long groupId) {
+        List<AttendanceDto> attendanceDtos = mapper.toDto(repository.findStudentAttendance(studentId, groupId));
         return new ResponseEntity<>(new DataDto<>(attendanceDtos));
     }
 
