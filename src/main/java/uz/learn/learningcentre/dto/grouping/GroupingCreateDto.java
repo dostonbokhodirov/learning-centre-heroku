@@ -1,4 +1,4 @@
-package uz.learn.learningcentre.dto;
+package uz.learn.learningcentre.dto.grouping;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

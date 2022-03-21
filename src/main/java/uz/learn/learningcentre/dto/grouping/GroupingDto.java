@@ -1,12 +1,12 @@
-package uz.learn.learningcentre.dto;
+package uz.learn.learningcentre.dto.grouping;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import uz.learn.learningcentre.dto.student.StudentDto;
 import uz.learn.learningcentre.dto.base.GenericDto;
 
-import javax.persistence.Column;
 import java.time.LocalDate;
 import java.util.List;
 
