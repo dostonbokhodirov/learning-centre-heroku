@@ -15,7 +15,7 @@ import uz.learn.learningcentre.service.PaymentService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value = "/payment/")
 public class PaymentController extends AbstractController<PaymentService>
         implements GenericCrudController<PaymentCreateDto, PaymentUpdateDto>,

@@ -15,7 +15,7 @@ import uz.learn.learningcentre.service.NewsService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value = "/news/")
 public class NewsController extends AbstractController<NewsService>
         implements GenericCrudController<NewsCreateDto, NewsUpdateDto>,
