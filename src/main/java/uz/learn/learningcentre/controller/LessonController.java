@@ -16,7 +16,7 @@ import uz.learn.learningcentre.service.base.GenericService;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequestMapping(value = "/lesson/")
 public class LessonController extends AbstractController<LessonService>
         implements GenericCrudService<LessonDto, LessonCreateDto, LessonUpdateDto>,
