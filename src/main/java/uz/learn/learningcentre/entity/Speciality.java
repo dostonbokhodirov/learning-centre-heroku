@@ -3,6 +3,7 @@ package uz.learn.learningcentre.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import uz.learn.learningcentre.entity.base.BaseEntity;
 
 import javax.persistence.*;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(schema = "exam", name = "speciality")
-public class Speciality {
+public class Speciality implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

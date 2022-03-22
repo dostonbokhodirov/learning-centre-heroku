@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface AttendanceContainerRepository extends JpaRepository<AttendanceContainer, Long>, BaseRepository {
 
-
-
     List<AttendanceContainer> findAllByGroupId(Long groupId);
 
 }
