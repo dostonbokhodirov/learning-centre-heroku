@@ -10,14 +10,10 @@ import uz.learn.learningcentre.criteria.GroupingCriteria;
 import uz.learn.learningcentre.dto.GroupingCreateDto;
 import uz.learn.learningcentre.dto.GroupingDto;
 import uz.learn.learningcentre.dto.GroupingUpdateDto;
-import uz.learn.learningcentre.entity.AuthUser;
 import uz.learn.learningcentre.entity.Grouping;
-import uz.learn.learningcentre.entity.Subject;
 import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.mapper.GroupingMapper;
-import uz.learn.learningcentre.repository.AuthUserRepository;
 import uz.learn.learningcentre.repository.GroupingRepository;
-import uz.learn.learningcentre.repository.SubjectRepository;
 import uz.learn.learningcentre.response.AppErrorDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
@@ -35,24 +31,17 @@ public class GroupingService extends AbstractService<GroupingMapper, GroupingVal
         GenericService<GroupingDto, GroupingCriteria> {
 
 
-    private final SubjectRepository subjectRepository;
-    private final AuthUserRepository userRepository;
-
-    public GroupingService( GroupingMapper mapper , GroupingValidator validator , GroupingRepository repository , SubjectRepository subjectRepository , AuthUserRepository userRepository ) {
+    public GroupingService( GroupingMapper mapper , GroupingValidator validator , GroupingRepository repository ) {
         super( mapper , validator , repository );
-        this.subjectRepository = subjectRepository;
-        this.userRepository = userRepository;
     }
 
     @Override
     public ResponseEntity<DataDto<Long>> create( GroupingCreateDto groupingCreateDto ) {
         try {
             validator.validOnCreate( groupingCreateDto );
-            Subject subject = subjectRepository.findByName( groupingCreateDto.getSubject() );
-            AuthUser mentor = userRepository.findByFullName( groupingCreateDto.getMentor() );
             Grouping grouping = mapper.fromCreateDto( groupingCreateDto );
-            grouping.setSubjectId( subject.getId() );
-            grouping.setMentorId( mentor.getId() );
+            grouping.setSubjectId( groupingCreateDto.getSubject() );
+            grouping.setMentorId( groupingCreateDto.getMentor() );
             Grouping save = repository.save( grouping );
             return new ResponseEntity<>( new DataDto<>( save.getId() ) );
         } catch ( BadRequestException e ) {

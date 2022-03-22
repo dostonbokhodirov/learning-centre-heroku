@@ -42,6 +42,7 @@ public class GroupingController extends AbstractController<GroupingService>
     @Override
     @GetMapping("/delete/{id}")
     public ResponseEntity<DataDto<Boolean>> delete(@PathVariable Long id ) {
+
         return service.delete( id );
     }
 
@@ -49,12 +50,14 @@ public class GroupingController extends AbstractController<GroupingService>
     @Override
     @GetMapping("/get/{id}")
     public ResponseEntity<DataDto<GroupingDto>> get(@PathVariable Long id ) {
+
         return service.get( id );
     }
 
     @Override
     @GetMapping("/list")
     public ResponseEntity<DataDto<List<GroupingDto>>> getAll( GroupingCriteria criteria ) {
+
         return service.getAll( criteria );
     }
 }

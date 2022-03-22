@@ -16,9 +16,9 @@ public class GroupingUpdateDto extends GenericDto {
 
     private String name;
 
-    private String subject;
+    private Long subject;
 
-    private String mentor;
+    private Long mentor;
 
     private Boolean available;
 
