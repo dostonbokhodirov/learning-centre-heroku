@@ -1,21 +1,20 @@
-package uz.learn.learningcentre.entity;
-
+package uz.learn.learningcentre.dto.payment;
 
 import lombok.Getter;
 import lombok.Setter;
-import uz.learn.learningcentre.entity.base.Auditable;
+import uz.learn.learningcentre.dto.base.GenericDto;
 import uz.learn.learningcentre.enums.PaymentType;
 
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import java.time.LocalDate;
 
 @Getter
 @Setter
-@Entity
-@Table(schema = "payment", name = "payment")
-public class Payment extends Auditable {
+public class PaymentDto extends GenericDto {
+
+
+    private LocalDate createdAt;
 
     private Double price;
 
@@ -26,8 +25,7 @@ public class Payment extends Auditable {
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType; // cash / card
 
-    private boolean deleted;
-
     private boolean successful;
+
 
 }

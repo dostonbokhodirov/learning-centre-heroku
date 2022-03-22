@@ -1,4 +1,4 @@
-package uz.learn.learningcentre.dto;
+package uz.learn.learningcentre.dto.grouping;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,25 +6,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uz.learn.learningcentre.dto.base.GenericDto;
 
-import javax.persistence.Column;
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GroupingDto extends GenericDto {
+public class GroupingUpdateDto extends GenericDto {
 
     private String name;
 
-    private String subject;
+    private Long subject;
 
-    private String mentor;
+    private Long mentor;
 
-    private Boolean available; // nabor course da bormi or not
+    private Boolean available;
 
     private LocalDate closedDate;
 
-    private List<StudentDto> students;
+    private Double price;
 }

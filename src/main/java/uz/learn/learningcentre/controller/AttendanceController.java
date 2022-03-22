@@ -1,9 +1,6 @@
 package uz.learn.learningcentre.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
@@ -54,17 +51,20 @@ public class AttendanceController extends AbstractController<AttendanceService>
     }
 
     @Override
-    public ResponseEntity<DataDto<Long>> create(AttendanceCreateDto attendanceCreateDto) {
+    @PostMapping(value = "create/")
+    public ResponseEntity<DataDto<Long>> create(@RequestBody AttendanceCreateDto attendanceCreateDto) {
         return service.create(attendanceCreateDto);
     }
 
     @Override
-    public ResponseEntity<DataDto<Long>> update(AttendanceUpdateDto attendanceUpdateDto) {
+    @PutMapping(value = "update/")
+    public ResponseEntity<DataDto<Long>> update(@RequestBody AttendanceUpdateDto attendanceUpdateDto) {
         return service.update(attendanceUpdateDto);
     }
 
     @Override
-    public ResponseEntity<DataDto<Boolean>> delete(Long id) {
+    @DeleteMapping(value = "delete/{id}")
+    public ResponseEntity<DataDto<Boolean>> delete(@PathVariable("id") Long id) {
         return service.delete(id);
     }
 }

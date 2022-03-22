@@ -1,9 +1,9 @@
 package uz.learn.learningcentre.validator;
 
 import org.springframework.stereotype.Component;
-import uz.learn.learningcentre.dto.GroupingCreateDto;
-import uz.learn.learningcentre.dto.GroupingDto;
-import uz.learn.learningcentre.dto.GroupingUpdateDto;
+import uz.learn.learningcentre.dto.grouping.GroupingCreateDto;
+import uz.learn.learningcentre.dto.grouping.GroupingDto;
+import uz.learn.learningcentre.dto.grouping.GroupingUpdateDto;
 import uz.learn.learningcentre.entity.Grouping;
 import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.validator.base.GenericValidator;
