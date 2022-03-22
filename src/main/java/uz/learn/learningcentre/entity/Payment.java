@@ -26,6 +26,8 @@ public class Payment extends Auditable {
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType; // cash / card
 
+    private boolean deleted;
+
     private boolean successful;
 
 }

@@ -26,6 +26,12 @@ public class PaymentController extends AbstractController<PaymentService>
         super(service);
     }
 
+    //this method show all payments of one student
+    @GetMapping(value = "get/{studentId}")
+    public ResponseEntity<DataDto<List<PaymentDto>>> getStudentsAllPayment(@PathVariable("studentId") Long studentId, AbstractCriteria criteria) {
+        return service.getStudentsAllPayment(studentId, criteria);
+    }
+
     @Override
     @GetMapping(value = "get/{id}")
     public ResponseEntity<DataDto<PaymentDto>> get(@PathVariable("id") Long id) {
