@@ -2,6 +2,7 @@ package uz.learn.learningcentre.mapper;
 
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import uz.learn.learningcentre.dto.lesson.LessonCreateDto;
 import uz.learn.learningcentre.dto.lesson.LessonDto;
 import uz.learn.learningcentre.dto.lesson.LessonUpdateDto;
@@ -30,7 +31,7 @@ public interface LessonMapper extends GenericMapper<Lesson, LessonDto, LessonCre
     Lesson fromUpdateDto(LessonUpdateDto lessonUpdateDto);
 
     @Override
-    Lesson fromUpdateDto(LessonUpdateDto lessonUpdateDto, Lesson lesson);
+    Lesson fromUpdateDto(LessonUpdateDto lessonUpdateDto,@MappingTarget Lesson lesson);
 
     @Override
     List<Lesson> fromUpdateDto(List<LessonUpdateDto> ud);

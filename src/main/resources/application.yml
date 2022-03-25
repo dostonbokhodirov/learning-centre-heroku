@@ -1,11 +1,11 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/learning_centre
+    url: jdbc:postgresql://localhost:5432/learning-centre
     username: postgres
-    password: 2001
+    password: root123
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
     open-in-view: false

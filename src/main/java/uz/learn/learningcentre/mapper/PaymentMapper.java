@@ -1,6 +1,7 @@
 package uz.learn.learningcentre.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import uz.learn.learningcentre.dto.payment.PaymentCreateDto;
 import uz.learn.learningcentre.dto.payment.PaymentDto;
 import uz.learn.learningcentre.dto.payment.PaymentUpdateDto;
@@ -28,7 +29,7 @@ public interface PaymentMapper extends GenericMapper<Payment, PaymentDto, Paymen
     Payment fromUpdateDto(PaymentUpdateDto paymentUpdateDto);
 
     @Override
-    Payment fromUpdateDto(PaymentUpdateDto paymentUpdateDto, Payment payment);
+    Payment fromUpdateDto(PaymentUpdateDto paymentUpdateDto,@MappingTarget Payment payment);
 
     @Override
     List<Payment> fromUpdateDto(List<PaymentUpdateDto> ud);

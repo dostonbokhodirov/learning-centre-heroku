@@ -1,6 +1,7 @@
 package uz.learn.learningcentre.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import uz.learn.learningcentre.dto.news.NewsCreateDto;
 import uz.learn.learningcentre.dto.news.NewsDto;
 import uz.learn.learningcentre.dto.news.NewsUpdateDto;
@@ -29,7 +30,7 @@ public interface NewsMapper extends GenericMapper<News, NewsDto, NewsCreateDto, 
     News fromUpdateDto(NewsUpdateDto newsUpdateDto);
 
     @Override
-    News fromUpdateDto(NewsUpdateDto newsUpdateDto, News news);
+    News fromUpdateDto(NewsUpdateDto newsUpdateDto,@MappingTarget News news);
 
     @Override
     List<News> fromUpdateDto(List<NewsUpdateDto> ud);

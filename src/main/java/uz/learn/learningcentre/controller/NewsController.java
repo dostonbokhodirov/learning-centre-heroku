@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
+import uz.learn.learningcentre.criteria.LessonCriteria;
 import uz.learn.learningcentre.criteria.base.AbstractCriteria;
 import uz.learn.learningcentre.dto.news.NewsCreateDto;
 import uz.learn.learningcentre.dto.news.NewsDto;
@@ -19,7 +20,7 @@ import java.util.List;
 @RequestMapping(value = "/news/")
 public class NewsController extends AbstractController<NewsService>
         implements GenericCrudController<NewsCreateDto, NewsUpdateDto>,
-        GenericController<NewsDto, AbstractCriteria> {
+        GenericController<NewsDto, LessonCriteria> {
 
     public NewsController(NewsService service) {
         super(service);
@@ -33,7 +34,7 @@ public class NewsController extends AbstractController<NewsService>
 
     @Override
     @GetMapping(value = "list/")
-    public ResponseEntity<DataDto<List<NewsDto>>> getAll(AbstractCriteria criteria) {
+    public ResponseEntity<DataDto<List<NewsDto>>> getAll(LessonCriteria criteria) {
         return service.getAll(criteria);
     }
 
