@@ -1,5 +1,6 @@
 package uz.learn.learningcentre.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
@@ -8,10 +9,17 @@ import uz.learn.learningcentre.criteria.AuthUserCriteria;
 import uz.learn.learningcentre.dto.auth.AuthUserCreateDto;
 import uz.learn.learningcentre.dto.auth.AuthUserDto;
 import uz.learn.learningcentre.dto.auth.AuthUserUpdateDto;
+import uz.learn.learningcentre.dto.auth.SessionDto;
+import uz.learn.learningcentre.exceptions.NotFoundException;
+import uz.learn.learningcentre.response.AppErrorDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
+import uz.learn.learningcentre.service.AuthService;
 import uz.learn.learningcentre.service.AuthUserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -21,10 +29,26 @@ public class AuthUserController extends AbstractController<AuthUserService>
         implements GenericCrudController<AuthUserCreateDto, AuthUserUpdateDto>,
         GenericController<AuthUserDto, AuthUserCriteria> {
 
+    private final AuthService authService;
 
-    public AuthUserController(AuthUserService service) {
+    public AuthUserController(AuthUserService service, AuthService authService) {
         super(service);
+        this.authService = authService;
     }
+
+
+    @RequestMapping(value = "/token", method = RequestMethod.POST)
+    public ResponseEntity<DataDto<SessionDto>> getToken(@RequestBody AuthUserDto dto) {
+        return authService.getToken(dto);
+    }
+
+//    @RequestMapping(value = "/refresh-token", method = RequestMethod.GET)
+//    public ResponseEntity<DataDto<SessionDto>> getToken(HttpServletRequest request, HttpServletResponse response) {
+//
+//        return new ResponseEntity<>(new DataDto<>());
+//        authService.getRefreshToken(request, response);
+//
+//    }
 
 
     @Override
