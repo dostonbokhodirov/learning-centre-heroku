@@ -11,6 +11,7 @@ import java.time.LocalDate;
 public class MockDto extends GenericDto {
     private String name;
 
+
     private LocalDate date;
 
     private String location;
