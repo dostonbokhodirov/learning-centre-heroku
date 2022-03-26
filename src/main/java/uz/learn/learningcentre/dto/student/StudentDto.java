@@ -1,5 +1,6 @@
 package uz.learn.learningcentre.dto.student;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import uz.learn.learningcentre.enums.StudyType;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class StudentDto extends GenericDto {
 
     private String fullName;

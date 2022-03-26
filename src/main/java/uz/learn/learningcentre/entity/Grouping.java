@@ -31,12 +31,12 @@ public class Grouping extends Auditable {
     private LocalDate closedDate; // group tugatilgan sanasi
 
     @ManyToMany
-    @JoinTable(
+ /*   @JoinTable(
             name = "student_group",
             schema = "student",
             joinColumns = {@JoinColumn(name = "group_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")}
-    )
+    )*/
     private List<Student> students;
 
 

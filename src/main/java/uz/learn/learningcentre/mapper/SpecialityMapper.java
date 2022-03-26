@@ -1,6 +1,7 @@
 package uz.learn.learningcentre.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import uz.learn.learningcentre.dto.speciality.SpecialityCreateDto;
 import uz.learn.learningcentre.dto.speciality.SpecialityDto;
 import uz.learn.learningcentre.dto.speciality.SpecialityUpdateDto;
@@ -38,7 +39,7 @@ public interface SpecialityMapper extends GenericMapper<Speciality, SpecialityDt
     }
 
     @Override
-    default Speciality fromUpdateDto(SpecialityUpdateDto specialityUpdateDto, Speciality speciality) {
+    default Speciality fromUpdateDto(SpecialityUpdateDto specialityUpdateDto,@MappingTarget Speciality speciality) {
         return null;
     }
 

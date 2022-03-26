@@ -1,5 +1,6 @@
 package uz.learn.learningcentre.validator;
 
+import org.springframework.stereotype.Component;
 import uz.learn.learningcentre.dto.speciality.SpecialityCreateDto;
 import uz.learn.learningcentre.dto.speciality.SpecialityDto;
 import uz.learn.learningcentre.dto.speciality.SpecialityUpdateDto;
@@ -8,7 +9,7 @@ import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.validator.base.GenericValidator;
 
 import java.util.Objects;
-
+@Component
 public class SpecialityValidator implements
         GenericValidator<Speciality, SpecialityDto, SpecialityCreateDto, SpecialityUpdateDto, Long> {
 
