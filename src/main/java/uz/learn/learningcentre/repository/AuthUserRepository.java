@@ -13,4 +13,8 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long>, BaseR
     List<AuthUser> findAllByRole(AuthRole role, Pageable pageable);
 
     AuthUser findByFullName( String mentor );
+
+
+    AuthUser findAuthUserByPhoneNumber(String phoneNumber);
+
 }

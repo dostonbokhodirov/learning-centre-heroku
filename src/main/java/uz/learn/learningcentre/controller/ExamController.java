@@ -17,7 +17,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/exam")
 public class ExamController extends AbstractController<ExamService>
-        implements GenericCrudController<ExamCreateDto, ExamUpdateDto>, GenericController<ExamDto, ExamCriteria> {
+        implements GenericCrudController<ExamCreateDto, ExamUpdateDto>,
+        GenericController<ExamDto, ExamCriteria> {
 
     public ExamController(ExamService service) {
         super(service);
@@ -26,7 +27,7 @@ public class ExamController extends AbstractController<ExamService>
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<DataDto<Long>> create(ExamCreateDto examCreateDto) {
+    public ResponseEntity<DataDto<Long>> create( ExamCreateDto examCreateDto) {
         return service.create(examCreateDto);
     }
 

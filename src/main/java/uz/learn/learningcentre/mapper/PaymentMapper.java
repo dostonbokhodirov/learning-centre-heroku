@@ -29,7 +29,7 @@ public interface PaymentMapper extends GenericMapper<Payment, PaymentDto, Paymen
     Payment fromUpdateDto(PaymentUpdateDto paymentUpdateDto);
 
     @Override
-    Payment fromUpdateDto(PaymentUpdateDto paymentUpdateDto, @MappingTarget Payment payment);
+    Payment fromUpdateDto(PaymentUpdateDto paymentUpdateDto,@MappingTarget Payment payment);
 
     @Override
     List<Payment> fromUpdateDto(List<PaymentUpdateDto> ud);

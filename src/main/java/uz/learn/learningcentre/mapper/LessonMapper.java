@@ -31,7 +31,7 @@ public interface LessonMapper extends GenericMapper<Lesson, LessonDto, LessonCre
     Lesson fromUpdateDto(LessonUpdateDto lessonUpdateDto);
 
     @Override
-    Lesson fromUpdateDto(LessonUpdateDto lessonUpdateDto, @MappingTarget Lesson lesson);
+    Lesson fromUpdateDto(LessonUpdateDto lessonUpdateDto,@MappingTarget Lesson lesson);
 
     @Override
     List<Lesson> fromUpdateDto(List<LessonUpdateDto> ud);

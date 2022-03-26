@@ -35,4 +35,6 @@ public class Student extends Auditable {
 
     private String fathersNumber;
 
+    private boolean student; // student if added to course / if not student not added
+
 }

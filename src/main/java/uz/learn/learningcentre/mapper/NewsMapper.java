@@ -30,7 +30,7 @@ public interface NewsMapper extends GenericMapper<News, NewsDto, NewsCreateDto, 
     News fromUpdateDto(NewsUpdateDto newsUpdateDto);
 
     @Override
-    News fromUpdateDto(NewsUpdateDto newsUpdateDto, @MappingTarget News news);
+    News fromUpdateDto(NewsUpdateDto newsUpdateDto,@MappingTarget News news);
 
     @Override
     List<News> fromUpdateDto(List<NewsUpdateDto> ud);
