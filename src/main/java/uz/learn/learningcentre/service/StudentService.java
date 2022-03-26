@@ -126,7 +126,7 @@ public class StudentService extends AbstractService<StudentMapper, StudentValida
         int year = date.getYear();
         String s = String.valueOf(year);
 
-        Optional<List<Student>> list = repository.findAllByEntranceYearAndStudyTypeGrant(s);
+        Optional<List<Student>> list = repository.findAllByEntranceYearAndStudyType(s, StudyType.GRANT);
 
         if (list.isPresent()) {
             List<Student> students = list.get();
