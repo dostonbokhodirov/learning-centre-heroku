@@ -18,6 +18,8 @@ import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.base.AbstractService;
 import uz.learn.learningcentre.validator.StudentValidator;
 
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -117,5 +119,32 @@ public class StudentService extends AbstractService<StudentMapper, StudentValida
         }
 
         throw new BadRequestException("User not found");
+    }
+
+    public List<StudentDto> getRandomList(Integer count) {
+        LocalDate date = LocalDate.now();
+        int year = date.getYear();
+        String s = String.valueOf(year);
+
+        Optional<List<Student>> list = repository.findAllByEntranceYearAndStudyTypeGrant(s);
+
+        if (list.isPresent()) {
+            List<Student> students = list.get();
+
+            if (students.size() > count) {
+                Collections.shuffle(students);
+                List<Student> shuffledList = students.subList(0, count);
+
+                return mapper.toDto(shuffledList);
+            } else {
+
+                return mapper.toDto(students);
+            }
+
+        } else {
+
+            throw new RuntimeException("Students not found");
+        }
+
     }
 }

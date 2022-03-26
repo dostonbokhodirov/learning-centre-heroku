@@ -1,12 +1,10 @@
 package uz.learn.learningcentre.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
 import uz.learn.learningcentre.criteria.LessonCriteria;
-import uz.learn.learningcentre.criteria.base.AbstractCriteria;
 import uz.learn.learningcentre.dto.news.NewsCreateDto;
 import uz.learn.learningcentre.dto.news.NewsDto;
 import uz.learn.learningcentre.dto.news.NewsUpdateDto;

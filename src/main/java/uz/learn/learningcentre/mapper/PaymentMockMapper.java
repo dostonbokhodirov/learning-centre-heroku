@@ -1,6 +1,7 @@
 package uz.learn.learningcentre.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import uz.learn.learningcentre.dto.paymentMock.PaymentMockCreateDto;
 import uz.learn.learningcentre.dto.paymentMock.PaymentMockDto;
 import uz.learn.learningcentre.dto.paymentMock.PaymentMockUpdateDto;
@@ -29,7 +30,7 @@ public interface PaymentMockMapper extends GenericMapper<PaymentMock, PaymentMoc
     PaymentMock fromUpdateDto(PaymentMockUpdateDto paymentMockUpdateDto);
 
     @Override
-    PaymentMock fromUpdateDto(PaymentMockUpdateDto paymentMockUpdateDto, PaymentMock paymentMock);
+    PaymentMock fromUpdateDto(PaymentMockUpdateDto paymentMockUpdateDto,@MappingTarget PaymentMock paymentMock);
 
     @Override
     List<PaymentMock> fromUpdateDto(List<PaymentMockUpdateDto> ud);

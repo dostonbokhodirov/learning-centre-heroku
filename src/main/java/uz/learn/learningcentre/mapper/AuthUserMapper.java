@@ -11,7 +11,7 @@ import uz.learn.learningcentre.mapper.base.GenericMapper;
 
 import java.util.List;
 
-@Component
+//@Component
 @Mapper(componentModel = "spring")
 public interface AuthUserMapper extends GenericMapper<AuthUser, AuthUserDto, AuthUserCreateDto, AuthUserUpdateDto> {
 

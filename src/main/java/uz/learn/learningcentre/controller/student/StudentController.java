@@ -16,9 +16,10 @@ import uz.learn.learningcentre.service.StudentService;
 
 import javax.annotation.PreDestroy;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
-@RepositoryRestController
+@RestController
 @RequestMapping("/student")
 public class StudentController extends AbstractController<StudentService> implements
         GenericCrudController<StudentCreateDto, StudentUpdateDto>,
@@ -75,5 +76,11 @@ public class StudentController extends AbstractController<StudentService> implem
         return service.changePassword(password);
     }
 
+    @RequestMapping(value = "/random/students", method = RequestMethod.GET)
+    public ResponseEntity<DataDto<List<StudentDto>>> getTenRandomStudents(@RequestParam(value = "count")
+                                                                          @Min(10) Integer count) {
+        List<StudentDto> list = service.getRandomList(count);
 
+        return new ResponseEntity<>(new DataDto<>(list));
+    }
 }
