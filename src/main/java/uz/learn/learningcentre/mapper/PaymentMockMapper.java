@@ -28,8 +28,6 @@ public interface PaymentMockMapper extends GenericMapper<PaymentMock, PaymentMoc
     @Override
     PaymentMock fromUpdateDto(PaymentMockUpdateDto paymentMockUpdateDto);
 
-    @Override
-    PaymentMock fromUpdateDto(PaymentMockUpdateDto paymentMockUpdateDto, PaymentMock paymentMock);
 
     @Override
     List<PaymentMock> fromUpdateDto(List<PaymentMockUpdateDto> ud);

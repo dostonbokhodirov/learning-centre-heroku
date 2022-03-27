@@ -16,6 +16,7 @@ import uz.learn.learningcentre.property.ServerProperties;
 @EnableScheduling
 public class LearningCentreApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(LearningCentreApplication.class, args);
     }

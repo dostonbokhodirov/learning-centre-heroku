@@ -1,12 +1,20 @@
 package uz.learn.learningcentre.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.learn.learningcentre.criteria.PaymentMockCriteria;
 import uz.learn.learningcentre.dto.paymentMock.PaymentMockCreateDto;
 import uz.learn.learningcentre.dto.paymentMock.PaymentMockDto;
 import uz.learn.learningcentre.dto.paymentMock.PaymentMockUpdateDto;
+import uz.learn.learningcentre.entity.Payment;
+import uz.learn.learningcentre.entity.PaymentMock;
+import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.mapper.PaymentMockMapper;
 import uz.learn.learningcentre.repository.PaymentMockRepository;
+import uz.learn.learningcentre.response.AppErrorDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.base.AbstractService;
@@ -15,6 +23,7 @@ import uz.learn.learningcentre.service.base.GenericService;
 import uz.learn.learningcentre.validator.PaymentMockValidator;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PaymentMockService extends AbstractService<PaymentMockMapper, PaymentMockValidator, PaymentMockRepository>
@@ -37,16 +46,41 @@ public class PaymentMockService extends AbstractService<PaymentMockMapper, Payme
 
     @Override
     public ResponseEntity<DataDto<Boolean>> delete(Long id) {
-        return null;
+        try {
+            validator.validOnId(id);
+            repository.softDelete(id);
+            return new ResponseEntity<>(new DataDto<>(true), HttpStatus.NO_CONTENT);
+        } catch (BadRequestException e) {
+            return new ResponseEntity<>(new DataDto<>(new AppErrorDto(HttpStatus.BAD_REQUEST, e.getMessage())));
+        }
     }
 
     @Override
     public ResponseEntity<DataDto<PaymentMockDto>> get(Long id) {
-        return null;
+        try {
+            validator.validOnId(id);
+            Optional<PaymentMock> optionalPaymentMock = repository.findById(id);
+            return optionalPaymentMock
+                    .map(paymentMock -> new ResponseEntity<>(new DataDto<>(mapper.toDto(paymentMock))))
+                    .orElseGet(() -> new ResponseEntity<>(new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Not Found"))));
+        } catch (BadRequestException e) {
+            return new ResponseEntity<>(new DataDto<>(new AppErrorDto(HttpStatus.BAD_REQUEST, "Id invalid")));
+        }
+
     }
 
     @Override
     public ResponseEntity<DataDto<List<PaymentMockDto>>> getAll(PaymentMockCriteria criteria) {
-        return null;
+        Pageable pageable = PageRequest.of(criteria.getPage(), criteria.getSize());
+        List<PaymentMock> paymentMocks = repository.findAll(pageable).getContent();
+        return new ResponseEntity<>(new DataDto<>(mapper.toDto(paymentMocks)));
     }
+
+    public ResponseEntity<DataDto<List<PaymentMockDto>>> getAllById(Long userId, PaymentMockCriteria criteria) {
+        Pageable pageable = PageRequest.of(criteria.getPage(), criteria.getSize());
+        List<PaymentMock> paymentMocks = repository.findAllByStudentId(pageable, userId);
+        return new ResponseEntity<>(new DataDto<>(mapper.toDto(paymentMocks)));
+    }
+
+
 }

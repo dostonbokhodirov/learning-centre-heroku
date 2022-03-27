@@ -1,7 +1,6 @@
 package uz.learn.learningcentre.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
@@ -27,27 +26,38 @@ public class PaymentMockController extends AbstractController<PaymentMockService
     }
 
     @Override
-    public ResponseEntity<DataDto<PaymentMockDto>> get(Long id) {
-        return null;
+    @GetMapping(value = "get/{id}")
+    public ResponseEntity<DataDto<PaymentMockDto>> get(@PathVariable("id") Long id) {
+        return service.get(id);
     }
 
     @Override
+    @GetMapping(value = "list")
     public ResponseEntity<DataDto<List<PaymentMockDto>>> getAll(PaymentMockCriteria criteria) {
-        return null;
+        return service.getAll(criteria);
+    }
+
+
+    @GetMapping(value = "list/{userId}")
+    public ResponseEntity<DataDto<List<PaymentMockDto>>> getAllById(@PathVariable("userId") Long userId, PaymentMockCriteria criteria) {
+        return service.getAllById(userId, criteria);
     }
 
     @Override
-    public ResponseEntity<DataDto<Long>> create(PaymentMockCreateDto paymentMockCreateDto) {
-        return null;
+    @PostMapping(value = "create")
+    public ResponseEntity<DataDto<Long>> create(@RequestBody PaymentMockCreateDto paymentMockCreateDto) {
+        return service.create(paymentMockCreateDto);
     }
 
     @Override
-    public ResponseEntity<DataDto<Long>> update(PaymentMockUpdateDto paymentMockUpdateDto) {
-        return null;
+    @PutMapping(value = "update")
+    public ResponseEntity<DataDto<Long>> update(@RequestBody PaymentMockUpdateDto paymentMockUpdateDto) {
+        return service.update(paymentMockUpdateDto);
     }
 
     @Override
-    public ResponseEntity<DataDto<Boolean>> delete(Long id) {
-        return null;
+    @DeleteMapping(value = "delete/{id}")
+    public ResponseEntity<DataDto<Boolean>> delete(@PathVariable("id") Long id) {
+        return service.delete(id);
     }
 }
