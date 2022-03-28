@@ -1,6 +1,5 @@
 package uz.learn.learningcentre.service.student;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -9,8 +8,8 @@ import uz.learn.learningcentre.dto.student.StudentCreateDto;
 import uz.learn.learningcentre.dto.student.StudentDto;
 import uz.learn.learningcentre.dto.student.StudentUpdateDto;
 import uz.learn.learningcentre.entity.Student;
-import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.enums.StudyType;
+import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.mapper.student.StudentMapper;
 import uz.learn.learningcentre.repository.student.StudentRepository;
 import uz.learn.learningcentre.response.DataDto;
@@ -89,16 +88,9 @@ public class StudentService extends AbstractService<StudentMapper, StudentValida
 
     public ResponseEntity<DataDto<List<StudentDto>>> getAll(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Student> all = repository.findAll(pageable);
-
-        if (all.isEmpty()) {
-            throw new BadRequestException("page not found");
-        }
-
-        List<StudentDto> studentDtos = mapper.toDto(all.get().toList());
-        long totalCount = studentDtos.size();
-
-        return new ResponseEntity<>(new DataDto<>(studentDtos, totalCount));
+        List<Student> studentList = repository.findAll(pageable).getContent();
+        List<StudentDto> studentDtoList = mapper.toDto(studentList);
+        return new ResponseEntity<>(new DataDto<>(studentDtoList, (long) studentDtoList.size()));
     }
 
     public ResponseEntity<DataDto<Long>> changePassword(ChangePasswordDto password) {
@@ -117,7 +109,6 @@ public class StudentService extends AbstractService<StudentMapper, StudentValida
             }
 
         }
-
         throw new BadRequestException("User not found");
     }
 

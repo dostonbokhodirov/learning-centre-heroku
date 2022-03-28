@@ -45,12 +45,14 @@ public class GroupingService extends AbstractService<GroupingMapper, GroupingVal
     @Override
     public ResponseEntity<DataDto<Long>> update(GroupingUpdateDto groupingUpdateDto) {
         validator.validOnUpdate(groupingUpdateDto);
-        Grouping groupingById = repository.findByIdWithoutStudent(groupingUpdateDto.getId()).orElseThrow(() -> {
-            throw new NotFoundException("Group not found");
-        });
-        Grouping grouping = mapper.fromUpdateDto(groupingUpdateDto, groupingById);
-        Grouping save = repository.save(grouping);
-        return new ResponseEntity<>(new DataDto<>(save.getId()));
+        Optional<Grouping> optional = repository.findByIdWithoutStudent(groupingUpdateDto.getId());
+        if (optional.isPresent()) {
+            Grouping grouping = mapper.fromUpdateDto(groupingUpdateDto, optional.get());
+            Grouping save = repository.save(grouping);
+            return new ResponseEntity<>(new DataDto<>(save.getId()));
+        }
+        throw new NotFoundException("Group not found");
+
     }
 
     public ResponseEntity<DataDto<Boolean>> setStudent(Long groupId, Long studentId) {
@@ -70,11 +72,13 @@ public class GroupingService extends AbstractService<GroupingMapper, GroupingVal
     public ResponseEntity<DataDto<GroupingDto>> get(Long id) {
 //        try {
         validator.validOnId(id);
-        Grouping groupingById = repository.findById(id).orElseThrow(() -> {
-            throw new NotFoundException("GROUP_NOT_FOUND");
-        });
-        GroupingDto groupingDto = mapper.toDto(groupingById);
-        return new ResponseEntity<>(new DataDto<>(groupingDto));
+        Optional<Grouping> optional = repository.findById(id);
+        if (optional.isPresent()) {
+            GroupingDto groupingDto = mapper.toDto(optional.get());
+            return new ResponseEntity<>(new DataDto<>(groupingDto));
+        }
+        throw new NotFoundException("GROUP_NOT_FOUND");
+
         /*} catch ( NotFoundException e ) {
             return new ResponseEntity<>
                     ( new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND , e.getMessage() ) ) );

@@ -33,6 +33,8 @@ public class GroupingValidator implements GenericValidator<Grouping, GroupingDto
 
     @Override
     public void validOnId( Long id ) {
-
+        if (Objects.isNull(id)) {
+            throw new BadRequestException("ID IS INVALID");
+        }
     }
 }
