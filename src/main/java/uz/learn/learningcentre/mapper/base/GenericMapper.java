@@ -6,7 +6,6 @@ import java.util.List;
 
 public interface GenericMapper<E, D, CD, UD> extends BaseMapper {
 
-
     E fromDto(D dto);
 
     List<E> fromDto(List<D> dtos);
@@ -17,7 +16,7 @@ public interface GenericMapper<E, D, CD, UD> extends BaseMapper {
 
     E fromUpdateDto(UD ud);
 
-    E fromUpdateDto(UD ud,@MappingTarget E e);
+    E fromUpdateDto(UD ud, @MappingTarget E e);
 
     List<E> fromUpdateDto(List<UD> ud);
 
