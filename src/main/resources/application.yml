@@ -5,7 +5,7 @@ spring:
     username: postgres
     password: 2001
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
       ddl-auto: update
     open-in-view: false
@@ -21,3 +21,6 @@ springdoc:
     path: swagger-ui
   api-docs:
     path: /api-docs
+
+
+

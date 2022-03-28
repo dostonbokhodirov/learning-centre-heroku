@@ -9,7 +9,7 @@ import uz.learn.learningcentre.dto.auth.AuthUserCreateDto;
 import uz.learn.learningcentre.dto.auth.AuthUserDto;
 import uz.learn.learningcentre.dto.auth.AuthUserUpdateDto;
 import uz.learn.learningcentre.entity.AuthUser;
-import uz.learn.learningcentre.enums.AuthRole;
+import uz.learn.learningcentre.exceptions.enums.AuthRole;
 import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.mapper.AuthUserMapper;
 import uz.learn.learningcentre.repository.AuthUserRepository;

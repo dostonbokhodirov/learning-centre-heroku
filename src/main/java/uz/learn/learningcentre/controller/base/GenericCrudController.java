@@ -6,6 +6,8 @@ import uz.learn.learningcentre.dto.base.GenericDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 
+import java.io.IOException;
+
 public interface GenericCrudController<CD extends BaseDto, UD extends GenericDto> {
 
     ResponseEntity<DataDto<Long>> create(CD cd);

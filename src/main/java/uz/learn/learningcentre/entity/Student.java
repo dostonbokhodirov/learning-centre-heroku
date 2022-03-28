@@ -6,10 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uz.learn.learningcentre.entity.base.Auditable;
-import uz.learn.learningcentre.enums.StudyType;
+import uz.learn.learningcentre.exceptions.enums.StudyType;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Getter
 @Setter

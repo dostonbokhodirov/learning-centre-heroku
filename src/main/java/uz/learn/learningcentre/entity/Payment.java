@@ -4,7 +4,7 @@ package uz.learn.learningcentre.entity;
 import lombok.Getter;
 import lombok.Setter;
 import uz.learn.learningcentre.entity.base.Auditable;
-import uz.learn.learningcentre.enums.PaymentType;
+import uz.learn.learningcentre.exceptions.enums.PaymentType;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

@@ -1,6 +1,7 @@
 package uz.learn.learningcentre.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import uz.learn.learningcentre.dto.grouping.GroupingCreateDto;
@@ -12,7 +13,7 @@ import uz.learn.learningcentre.validator.base.BaseValidator;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring",nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+@Mapper( componentModel = "spring", uses = StudentMapper.class, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE )
 public interface GroupingMapper extends GenericMapper<
         Grouping,
         GroupingDto,
@@ -38,7 +39,8 @@ public interface GroupingMapper extends GenericMapper<
     List<Grouping> fromUpdateDto( List<GroupingUpdateDto> ud );
 
     @Override
-    Grouping fromUpdateDto( GroupingUpdateDto groupingUpdateDto ,@MappingTarget Grouping grouping );
+    @Mapping( target = "students",ignore = true)
+    Grouping fromUpdateDto( GroupingUpdateDto groupingUpdateDto , @MappingTarget Grouping grouping );
 
     @Override
     Grouping fromCreateDto( GroupingCreateDto groupingCreateDto );

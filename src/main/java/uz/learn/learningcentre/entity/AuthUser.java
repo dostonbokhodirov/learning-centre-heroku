@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import uz.learn.learningcentre.entity.base.Auditable;
 import uz.learn.learningcentre.entity.base.BaseEntity;
-import uz.learn.learningcentre.enums.AuthRole;
+import uz.learn.learningcentre.exceptions.enums.AuthRole;
 
 import javax.persistence.*;
 import java.util.List;

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import uz.learn.learningcentre.dto.base.GenericDto;
 import uz.learn.learningcentre.dto.subject.SubjectDto;
-import uz.learn.learningcentre.enums.AuthRole;
+import uz.learn.learningcentre.exceptions.enums.AuthRole;
 
 import java.util.List;
 

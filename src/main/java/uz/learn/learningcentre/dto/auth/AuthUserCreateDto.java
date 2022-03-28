@@ -1,11 +1,10 @@
 package uz.learn.learningcentre.dto.auth;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import uz.learn.learningcentre.dto.base.BaseDto;
 import uz.learn.learningcentre.entity.Subject;
-import uz.learn.learningcentre.enums.AuthRole;
+import uz.learn.learningcentre.exceptions.enums.AuthRole;
 
 import java.util.Collections;
 import java.util.List;

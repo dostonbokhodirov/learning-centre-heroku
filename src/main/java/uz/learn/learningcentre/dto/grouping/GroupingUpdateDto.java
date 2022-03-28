@@ -7,6 +7,7 @@ import lombok.Setter;
 import uz.learn.learningcentre.dto.base.GenericDto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +26,5 @@ public class GroupingUpdateDto extends GenericDto {
     private LocalDate closedDate;
 
     private Double price;
+
 }

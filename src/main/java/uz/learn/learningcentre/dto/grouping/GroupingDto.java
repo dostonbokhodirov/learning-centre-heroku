@@ -18,9 +18,9 @@ public class GroupingDto extends GenericDto {
 
     private String name;
 
-    private String subject;
+    private Long subjectId;
 
-    private String mentor;
+    private Long mentorId;
 
     private Boolean available; // nabor course da bormi or not
 

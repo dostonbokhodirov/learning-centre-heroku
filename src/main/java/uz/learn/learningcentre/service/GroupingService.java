@@ -7,11 +7,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.learn.learningcentre.criteria.GroupingCriteria;
-import uz.learn.learningcentre.dto.GroupingCreateDto;
-import uz.learn.learningcentre.dto.GroupingDto;
-import uz.learn.learningcentre.dto.GroupingUpdateDto;
+import uz.learn.learningcentre.dto.grouping.GroupingCreateDto;
+import uz.learn.learningcentre.dto.grouping.GroupingDto;
+import uz.learn.learningcentre.dto.grouping.GroupingUpdateDto;
 import uz.learn.learningcentre.entity.Grouping;
-import uz.learn.learningcentre.exceptions.BadRequestException;
+import uz.learn.learningcentre.exceptions.NotFoundException;
 import uz.learn.learningcentre.mapper.GroupingMapper;
 import uz.learn.learningcentre.repository.GroupingRepository;
 import uz.learn.learningcentre.response.AppErrorDto;
@@ -37,92 +37,60 @@ public class GroupingService extends AbstractService<GroupingMapper, GroupingVal
 
     @Override
     public ResponseEntity<DataDto<Long>> create( GroupingCreateDto groupingCreateDto ) {
-        try {
-            validator.validOnCreate( groupingCreateDto );
-            Grouping grouping = mapper.fromCreateDto( groupingCreateDto );
-            grouping.setSubjectId( groupingCreateDto.getSubject() );
-            grouping.setMentorId( groupingCreateDto.getMentor() );
-            Grouping save = repository.save( grouping );
-            return new ResponseEntity<>( new DataDto<>( save.getId() ) );
-        } catch ( BadRequestException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.BAD_REQUEST , e.getMessage() ) ) );
-        } catch ( IllegalArgumentException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.INTERNAL_SERVER_ERROR , e.getMessage() ) ) );
-        }
+        validator.validOnCreate( groupingCreateDto );
+        Grouping grouping = mapper.fromCreateDto( groupingCreateDto );
+        grouping.setSubjectId( groupingCreateDto.getSubject() );
+        grouping.setMentorId( groupingCreateDto.getMentor() );
+        Grouping save = repository.save( grouping );
+        return new ResponseEntity<>( new DataDto<>( save.getId() ) );
     }
 
     @Override
     public ResponseEntity<DataDto<Long>> update( GroupingUpdateDto groupingUpdateDto ) {
-        try {
-            validator.validOnUpdate( groupingUpdateDto );
-            Optional<Grouping> byId = repository.findById( groupingUpdateDto.getId() );
-            if ( byId.isPresent() ) {
-                Grouping grouping = mapper.fromUpdateDto( groupingUpdateDto , byId.get() );
-                Grouping save = repository.save( grouping );
-                return new ResponseEntity<>( new DataDto<>( save.getId() ) );
-            }
-            return new ResponseEntity<>( new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND , "GROUP_NOT_FOUND" ) ) );
-        } catch ( BadRequestException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.BAD_REQUEST , e.getMessage() ) ) );
-        } catch ( IllegalArgumentException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.INTERNAL_SERVER_ERROR , e.getMessage() ) ) );
-        }
+        validator.validOnUpdate( groupingUpdateDto );
+        Grouping groupingById = repository.findByIdWithoutStudent( groupingUpdateDto.getId() ).orElseThrow( () -> {
+            throw new NotFoundException( "Group not found" );
+        } );
+        Grouping grouping = mapper.fromUpdateDto( groupingUpdateDto , groupingById );
+        Grouping save = repository.save( grouping );
+        return new ResponseEntity<>( new DataDto<>( save.getId() ) );
+    }
 
+    public ResponseEntity<DataDto<Boolean>> setStudent( Long groupId , Long studentId ) {
+        repository.setStudent( studentId , groupId );
+        return new ResponseEntity<>( new DataDto<>( true ) );
     }
 
     @Override
     public ResponseEntity<DataDto<Boolean>> delete( Long id ) {
-        try {
-            validator.validOnId( id );
-            Optional<Grouping> byId = repository.findById( id );
-            byId.ifPresent( repository::delete );
-            return new ResponseEntity<>( new DataDto<>( true ) );
-        } catch ( BadRequestException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.BAD_REQUEST , e.getMessage() ) ) );
-        } catch ( IllegalArgumentException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.INTERNAL_SERVER_ERROR , e.getMessage() ) ) );
-        }
+        validator.validOnId( id );
+        Optional<Grouping> byId = repository.findById( id );
+        byId.ifPresent( repository::delete );
+        return new ResponseEntity<>( new DataDto<>( true ) );
     }
 
     @Override
     public ResponseEntity<DataDto<GroupingDto>> get( Long id ) {
-        try {
+//        try {
             validator.validOnId( id );
-            Optional<Grouping> byId = repository.findById( id );
-            if ( byId.isPresent() ) {
-                GroupingDto groupingDto = mapper.toDto( byId.get() );
-                return new ResponseEntity<>( new DataDto<>( groupingDto ) );
-            }
-            return new ResponseEntity<>( new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND , "GROUP_NOT_FOUND" ) ) );
-        } catch ( BadRequestException e ) {
+            Grouping groupingById = repository.findById( id ).orElseThrow( () -> {
+                throw new NotFoundException( "GROUP_NOT_FOUND" );
+            } );
+            GroupingDto groupingDto = mapper.toDto( groupingById );
+            return new ResponseEntity<>( new DataDto<>( groupingDto ) );
+        /*} catch ( NotFoundException e ) {
             return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.BAD_REQUEST , e.getMessage() ) ) );
-        } catch ( IllegalArgumentException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.INTERNAL_SERVER_ERROR , e.getMessage() ) ) );
-        }
-    }
+                    ( new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND , e.getMessage() ) ) );
+
+        }*/
+     }
 
     @Override
     public ResponseEntity<DataDto<List<GroupingDto>>> getAll( GroupingCriteria criteria ) {
-        try {
-            Pageable pageable = PageRequest.of( criteria.getPage() , criteria.getSize() , Sort.by( "price" ).descending() );
-            Page<Grouping> all = repository.findAll( pageable );
-            List<Grouping> list = all.stream().toList();
-            List<GroupingDto> dtos = mapper.toDto( list );
-            return new ResponseEntity<>( new DataDto<>( dtos ) );
-        } catch ( BadRequestException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.BAD_REQUEST , e.getMessage() ) ) );
-        } catch ( IllegalArgumentException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.INTERNAL_SERVER_ERROR , e.getMessage() ) ) );
-        }
+        Pageable pageable = PageRequest.of( criteria.getPage() , criteria.getSize() , Sort.by( "price" ).descending() );
+        Page<Grouping> all = repository.findAll( pageable );
+        List<Grouping> list = all.stream().toList();
+        List<GroupingDto> dtos = mapper.toDto( list );
+        return new ResponseEntity<>( new DataDto<>( dtos ) );
     }
 }
