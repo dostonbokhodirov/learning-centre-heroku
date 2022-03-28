@@ -1,6 +1,5 @@
 package uz.learn.learningcentre.controller.student;
 
-import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
@@ -18,7 +17,7 @@ import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 import java.util.List;
 
-@RepositoryRestController
+@RestController
 @RequestMapping("/student")
 public class StudentController extends AbstractController<StudentService> implements
         GenericCrudController<StudentCreateDto, StudentUpdateDto>,
@@ -56,8 +55,9 @@ public class StudentController extends AbstractController<StudentService> implem
     /**
      * this method not used
      */
-    @PreDestroy
-    @Override
+//    @PreDestroy
+//    @Override
+    @GetMapping(value = "/tegma")
     public ResponseEntity<DataDto<List<StudentDto>>> getAll(StudentCriteria criteria) {
         return null;
     }

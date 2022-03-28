@@ -11,19 +11,19 @@ import uz.learn.learningcentre.response.ResponseEntity;
 @ControllerAdvice("uz.learn.learningcentre")
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({RuntimeException.class})
+    @ExceptionHandler(value = {RuntimeException.class})
     public ResponseEntity<DataDto<AppErrorDto>> handle500(RuntimeException e, WebRequest webRequest) {
         return new ResponseEntity<>
                 (new DataDto<>(new AppErrorDto(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), webRequest)));
     }
 
-    @ExceptionHandler({BadRequestException.class})
-    public ResponseEntity<DataDto<AppErrorDto>> handle400(RuntimeException e, WebRequest webRequest) {
+    @ExceptionHandler(value = {BadRequestException.class})
+    public ResponseEntity<DataDto<AppErrorDto>> handle400(BadRequestException e, WebRequest webRequest) {
         return new ResponseEntity<>
                 (new DataDto<>(new AppErrorDto(HttpStatus.BAD_REQUEST, e.getMessage(), webRequest)));
     }
 
-    @ExceptionHandler({NotFoundException.class})
+    @ExceptionHandler(value = {NotFoundException.class})
     public ResponseEntity<DataDto<AppErrorDto>> handle404(RuntimeException e, WebRequest webRequest) {
         return new ResponseEntity<>
                 (new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, e.getMessage(), webRequest)));
