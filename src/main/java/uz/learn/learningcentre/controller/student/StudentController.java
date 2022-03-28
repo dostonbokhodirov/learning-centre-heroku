@@ -4,21 +4,22 @@ import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
-import uz.learn.learningcentre.criteria.StudentCriteria;
+import uz.learn.learningcentre.criteria.student.StudentCriteria;
 import uz.learn.learningcentre.dto.student.ChangePasswordDto;
 import uz.learn.learningcentre.dto.student.StudentCreateDto;
 import uz.learn.learningcentre.dto.student.StudentDto;
 import uz.learn.learningcentre.dto.student.StudentUpdateDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
-import uz.learn.learningcentre.service.StudentService;
+import uz.learn.learningcentre.service.student.StudentService;
 
 import javax.annotation.PreDestroy;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping(value = "/student")
 public class StudentController extends AbstractController<StudentService> implements
         GenericCrudController<StudentCreateDto, StudentUpdateDto>,
         GenericController<StudentDto, StudentCriteria> {
@@ -56,8 +57,7 @@ public class StudentController extends AbstractController<StudentService> implem
      * this method not used
      */
 //    @PreDestroy
-//    @Override
-    @GetMapping(value = "/tegma")
+    @Override
     public ResponseEntity<DataDto<List<StudentDto>>> getAll(StudentCriteria criteria) {
         return null;
     }
@@ -75,5 +75,9 @@ public class StudentController extends AbstractController<StudentService> implem
         return service.changePassword(password);
     }
 
-
+    @RequestMapping(value = "/random/students", method = RequestMethod.GET)
+    public ResponseEntity<DataDto<List<StudentDto>>> getTenRandomStudents(@RequestParam(value = "count") @Min(10) Integer count) {
+        List<StudentDto> list = service.getRandomList(count);
+        return new ResponseEntity<>(new DataDto<>(list));
+    }
 }

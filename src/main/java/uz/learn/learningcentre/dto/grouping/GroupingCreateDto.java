@@ -14,9 +14,10 @@ public class GroupingCreateDto implements BaseDto {
 
     private String name;
 
+    private Long subject;
 
-    private String subject;
+    private Long mentor;
 
+    private Double price;
 
-    private String mentor;
 }

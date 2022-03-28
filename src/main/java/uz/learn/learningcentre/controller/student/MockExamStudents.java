@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.RestController;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
-import uz.learn.learningcentre.criteria.StudentCriteria;
+import uz.learn.learningcentre.criteria.student.StudentCriteria;
 import uz.learn.learningcentre.dto.student.StudentCreateDto;
 import uz.learn.learningcentre.dto.student.StudentDto;
 import uz.learn.learningcentre.dto.student.StudentUpdateDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
-import uz.learn.learningcentre.service.StudentService;
+import uz.learn.learningcentre.service.student.StudentService;
 
 import java.util.List;
 

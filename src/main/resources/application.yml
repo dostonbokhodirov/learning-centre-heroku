@@ -3,7 +3,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/learning-centre
     username: postgres
-    password: root123
+    password: 2001
   jpa:
     show-sql: true
     hibernate:
@@ -24,3 +24,4 @@ springdoc:
     path: swagger-ui
   api-docs:
     path: /api-docs
+
