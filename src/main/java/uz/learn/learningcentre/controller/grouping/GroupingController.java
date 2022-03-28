@@ -39,9 +39,15 @@ public class GroupingController extends AbstractController<GroupingService>
         return service.update( groupingUpdateDto );
     }
 
+    @PostMapping("/SetStudent/{group}/{student}")
+    public ResponseEntity<DataDto<Boolean>> setStudent(@PathVariable Long group,@PathVariable Long student) {
+        return service.setStudent( group, student );
+    }
+
     @Override
     @GetMapping("/delete/{id}")
     public ResponseEntity<DataDto<Boolean>> delete(@PathVariable Long id ) {
+
         return service.delete( id );
     }
 

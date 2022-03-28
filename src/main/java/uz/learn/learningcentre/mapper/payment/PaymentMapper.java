@@ -2,6 +2,7 @@ package uz.learn.learningcentre.mapper.payment;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import org.springframework.stereotype.Component;
 import uz.learn.learningcentre.dto.payment.PaymentCreateDto;
 import uz.learn.learningcentre.dto.payment.PaymentDto;
 import uz.learn.learningcentre.dto.payment.PaymentUpdateDto;
@@ -9,7 +10,7 @@ import uz.learn.learningcentre.entity.Payment;
 import uz.learn.learningcentre.mapper.base.GenericMapper;
 
 import java.util.List;
-
+@Component
 @Mapper(componentModel = "spring")
 public interface PaymentMapper extends GenericMapper<Payment, PaymentDto, PaymentCreateDto, PaymentUpdateDto> {
 

@@ -2,6 +2,7 @@ package uz.learn.learningcentre.mapper.news;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import org.springframework.stereotype.Component;
 import uz.learn.learningcentre.dto.news.NewsCreateDto;
 import uz.learn.learningcentre.dto.news.NewsDto;
 import uz.learn.learningcentre.dto.news.NewsUpdateDto;
@@ -9,7 +10,7 @@ import uz.learn.learningcentre.entity.News;
 import uz.learn.learningcentre.mapper.base.GenericMapper;
 
 import java.util.List;
-
+@Component
 @Mapper(componentModel = "spring")
 public interface NewsMapper extends GenericMapper<News, NewsDto, NewsCreateDto, NewsUpdateDto> {
 
@@ -30,7 +31,7 @@ public interface NewsMapper extends GenericMapper<News, NewsDto, NewsCreateDto, 
     News fromUpdateDto(NewsUpdateDto newsUpdateDto);
 
     @Override
-    News fromUpdateDto(NewsUpdateDto newsUpdateDto,@MappingTarget News news);
+    News fromUpdateDto( NewsUpdateDto newsUpdateDto, @MappingTarget News news);
 
     @Override
     List<News> fromUpdateDto(List<NewsUpdateDto> ud);

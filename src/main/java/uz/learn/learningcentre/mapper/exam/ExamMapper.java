@@ -12,7 +12,8 @@ import java.util.List;
 
 
 @Mapper(componentModel = "spring")
-public interface ExamMapper extends GenericMapper<Exam, ExamDto, ExamCreateDto, ExamUpdateDto> {
+public
+interface ExamMapper extends GenericMapper<Exam, ExamDto, ExamCreateDto, ExamUpdateDto> {
 
     @Override
     Exam fromDto(ExamDto dto);

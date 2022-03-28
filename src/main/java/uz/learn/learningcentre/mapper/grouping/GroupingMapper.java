@@ -1,6 +1,7 @@
-package uz.learn.learningcentre.mapper.grouping;
+package uz.learn.learningcentre.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import uz.learn.learningcentre.dto.grouping.GroupingCreateDto;
@@ -12,7 +13,7 @@ import uz.learn.learningcentre.validator.base.BaseValidator;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+@Mapper( componentModel = "spring", uses = StudentMapper.class, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE )
 public interface GroupingMapper extends GenericMapper<
         Grouping,
         GroupingDto,
@@ -20,29 +21,30 @@ public interface GroupingMapper extends GenericMapper<
         GroupingUpdateDto>, BaseValidator {
 
     @Override
-    Grouping fromDto(GroupingDto dto);
+    Grouping fromDto( GroupingDto dto );
 
     @Override
-    List<Grouping> fromDto(List<GroupingDto> dtos);
+    List<Grouping> fromDto( List<GroupingDto> dtos );
 
     @Override
-    GroupingDto toDto(Grouping entity);
+    GroupingDto toDto( Grouping entity );
 
     @Override
-    List<GroupingDto> toDto(List<Grouping> entities);
+    List<GroupingDto> toDto( List<Grouping> entities );
 
     @Override
-    Grouping fromUpdateDto(GroupingUpdateDto groupingUpdateDto);
+    Grouping fromUpdateDto( GroupingUpdateDto groupingUpdateDto );
 
     @Override
-    List<Grouping> fromUpdateDto(List<GroupingUpdateDto> ud);
+    List<Grouping> fromUpdateDto( List<GroupingUpdateDto> ud );
 
     @Override
-    Grouping fromUpdateDto(GroupingUpdateDto groupingUpdateDto, @MappingTarget Grouping grouping);
+    @Mapping( target = "students",ignore = true)
+    Grouping fromUpdateDto( GroupingUpdateDto groupingUpdateDto , @MappingTarget Grouping grouping );
 
     @Override
-    Grouping fromCreateDto(GroupingCreateDto groupingCreateDto);
+    Grouping fromCreateDto( GroupingCreateDto groupingCreateDto );
 
     @Override
-    List<Grouping> fromCreateDto(List<GroupingCreateDto> cd);
+    List<Grouping> fromCreateDto( List<GroupingCreateDto> cd );
 }

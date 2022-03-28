@@ -3,6 +3,7 @@ package uz.learn.learningcentre.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.engine.profile.Fetch;
 import uz.learn.learningcentre.entity.base.Auditable;
 
 import javax.persistence.*;
@@ -30,13 +31,13 @@ public class Grouping extends Auditable {
     @Column
     private LocalDate closedDate; // group tugatilgan sanasi
 
-    @ManyToMany
- /*   @JoinTable(
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
             name = "student_group",
             schema = "student",
             joinColumns = {@JoinColumn(name = "group_id")},
             inverseJoinColumns = {@JoinColumn(name = "student_id")}
-    )*/
+    )
     private List<Student> students;
 
 

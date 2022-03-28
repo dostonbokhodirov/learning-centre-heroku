@@ -22,5 +22,4 @@ public class Picture extends Auditable {
 
     private Integer size;
 
-
 }
