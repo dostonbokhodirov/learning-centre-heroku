@@ -72,8 +72,9 @@ public class AttendanceService extends AbstractService<AttendanceMapper, Attenda
             validator.validOnId(id);
 
             Optional<Attendance> attendance = repository.findById(id);
-            if (attendance.isEmpty()) {
-                return new ResponseEntity<>(new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Attendance not found")));
+            if (!attendance.isPresent()) {
+                return new ResponseEntity<>
+                        (new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Attendance not found")));
             }
 
             AttendanceDto attendanceDto = mapper.toDto(attendance.get());
@@ -100,8 +101,8 @@ public class AttendanceService extends AbstractService<AttendanceMapper, Attenda
 
     //show all attendances of student (inside the group)
     public ResponseEntity<DataDto<List<AttendanceDto>>> getStudentAttendance(Long studentId, Long groupId) {
-        List<AttendanceDto> attendanceDtos = mapper.toDto(repository.findStudentAttendance(studentId, groupId));
-        return new ResponseEntity<>(new DataDto<>(attendanceDtos));
+        List<AttendanceDto> attendanceDtoList = mapper.toDto(repository.findStudentAttendance(studentId, groupId));
+        return new ResponseEntity<>(new DataDto<>(attendanceDtoList));
     }
 
 }

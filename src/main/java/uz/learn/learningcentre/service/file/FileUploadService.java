@@ -77,15 +77,12 @@ public class FileUploadService extends AbstractService<FileMapper, FileValidator
     }
 
     public void getPicture(Long id, HttpServletResponse response) throws IOException {
-        Picture pictureById = repository.findById(id).orElseThrow(() -> {
-            throw new NotFoundException("Picture not found");
-        });
         Optional<Picture> optional = repository.findById(id);
         if (optional.isPresent()) {
-            String contentType = pictureById.getContentType();
+            String contentType = optional.get().getContentType();
             response.setContentType(contentType);
-            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + pictureById.getName() + "\"");
-            FileCopyUtils.copy(pictureById.getContent(), response.getOutputStream());
+            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" + optional.get().getName() + "\"");
+            FileCopyUtils.copy(optional.get().getContent(), response.getOutputStream());
         }
         throw new NotFoundException("Picture not found");
 
