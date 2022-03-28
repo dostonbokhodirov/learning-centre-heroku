@@ -19,7 +19,7 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping(value = "/student")
 public class StudentController extends AbstractController<StudentService> implements
         GenericCrudController<StudentCreateDto, StudentUpdateDto>,
         GenericController<StudentDto, StudentCriteria> {
@@ -56,7 +56,7 @@ public class StudentController extends AbstractController<StudentService> implem
     /**
      * this method not used
      */
-    @PreDestroy
+//    @PreDestroy
     @Override
     public ResponseEntity<DataDto<List<StudentDto>>> getAll(StudentCriteria criteria) {
         return null;
