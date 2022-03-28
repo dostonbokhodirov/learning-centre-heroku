@@ -3,7 +3,7 @@ package uz.learn.learningcentre.entity;
 
 import lombok.*;
 import uz.learn.learningcentre.entity.base.Auditable;
-import uz.learn.learningcentre.exceptions.enums.StudyType;
+import uz.learn.learningcentre.enums.StudyType;
 
 import javax.persistence.*;
 

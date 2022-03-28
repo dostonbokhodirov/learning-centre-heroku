@@ -3,7 +3,7 @@ package uz.learn.learningcentre.criteria.authUser;
 import lombok.Getter;
 import lombok.Setter;
 import uz.learn.learningcentre.criteria.base.AbstractCriteria;
-import uz.learn.learningcentre.exceptions.enums.AuthRole;
+import uz.learn.learningcentre.enums.AuthRole;
 
 @Getter
 @Setter

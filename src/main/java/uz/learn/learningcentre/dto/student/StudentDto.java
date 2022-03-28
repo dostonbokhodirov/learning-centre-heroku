@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uz.learn.learningcentre.dto.base.GenericDto;
-import uz.learn.learningcentre.exceptions.enums.StudyType;
+import uz.learn.learningcentre.enums.StudyType;
 
 @Getter
 @Setter

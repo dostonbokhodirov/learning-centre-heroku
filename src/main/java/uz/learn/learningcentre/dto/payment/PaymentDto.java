@@ -3,7 +3,7 @@ package uz.learn.learningcentre.dto.payment;
 import lombok.Getter;
 import lombok.Setter;
 import uz.learn.learningcentre.dto.base.GenericDto;
-import uz.learn.learningcentre.exceptions.enums.PaymentType;
+import uz.learn.learningcentre.enums.PaymentType;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

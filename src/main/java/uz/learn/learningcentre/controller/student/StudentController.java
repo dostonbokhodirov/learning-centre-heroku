@@ -13,7 +13,6 @@ import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.student.StudentService;
 
-import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
@@ -56,7 +55,6 @@ public class StudentController extends AbstractController<StudentService> implem
     /**
      * this method not used
      */
-    @PreDestroy
     @Override
     public ResponseEntity<DataDto<List<StudentDto>>> getAll(StudentCriteria criteria) {
         return null;

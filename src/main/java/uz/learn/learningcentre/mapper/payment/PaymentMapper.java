@@ -1,4 +1,4 @@
-package uz.learn.learningcentre.mapper;
+package uz.learn.learningcentre.mapper.payment;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

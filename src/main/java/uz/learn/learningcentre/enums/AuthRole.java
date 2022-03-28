@@ -1,4 +1,4 @@
-package uz.learn.learningcentre.exceptions.enums;
+package uz.learn.learningcentre.enums;
 
 import java.util.Arrays;
 

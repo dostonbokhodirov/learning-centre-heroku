@@ -3,7 +3,7 @@ package uz.learn.learningcentre.repository.authUser;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import uz.learn.learningcentre.entity.AuthUser;
-import uz.learn.learningcentre.exceptions.enums.AuthRole;
+import uz.learn.learningcentre.enums.AuthRole;
 import uz.learn.learningcentre.repository.base.BaseRepository;
 
 import java.util.List;

@@ -61,7 +61,6 @@ public class GroupingController extends AbstractController<GroupingService>
     @Override
     @GetMapping("/list")
     public ResponseEntity<DataDto<List<GroupingDto>>> getAll( GroupingCriteria criteria ) {
-
         return service.getAll( criteria );
     }
 }

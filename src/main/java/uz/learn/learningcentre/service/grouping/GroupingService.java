@@ -1,4 +1,4 @@
-package uz.learn.learningcentre.service;
+package uz.learn.learningcentre.service.grouping;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -6,21 +6,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import uz.learn.learningcentre.criteria.GroupingCriteria;
+import uz.learn.learningcentre.criteria.grouping.GroupingCriteria;
 import uz.learn.learningcentre.dto.grouping.GroupingCreateDto;
 import uz.learn.learningcentre.dto.grouping.GroupingDto;
 import uz.learn.learningcentre.dto.grouping.GroupingUpdateDto;
 import uz.learn.learningcentre.entity.Grouping;
 import uz.learn.learningcentre.exceptions.NotFoundException;
 import uz.learn.learningcentre.mapper.GroupingMapper;
-import uz.learn.learningcentre.repository.GroupingRepository;
+import uz.learn.learningcentre.repository.grouping.GroupingRepository;
 import uz.learn.learningcentre.response.AppErrorDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.base.AbstractService;
 import uz.learn.learningcentre.service.base.GenericCrudService;
 import uz.learn.learningcentre.service.base.GenericService;
-import uz.learn.learningcentre.validator.GroupingValidator;
+import uz.learn.learningcentre.validator.grouping.GroupingValidator;
 
 import java.util.List;
 import java.util.Optional;
