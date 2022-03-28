@@ -9,7 +9,6 @@ import uz.learn.learningcentre.exceptions.BadRequestException;
 import uz.learn.learningcentre.validator.base.GenericValidator;
 
 import java.util.Objects;
-
 @Component
 public class SpecialityValidator implements
         GenericValidator<Speciality, SpecialityDto, SpecialityCreateDto, SpecialityUpdateDto, Long> {
