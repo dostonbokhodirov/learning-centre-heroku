@@ -1,10 +1,6 @@
 package uz.learn.learningcentre.service;
 
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +11,6 @@ import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,28 +18,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MimeTypeUtils;
-import uz.learn.learningcentre.config.security.utils.JwtUtils;
 import uz.learn.learningcentre.dto.auth.AuthUserDto;
 import uz.learn.learningcentre.dto.auth.SessionDto;
 import uz.learn.learningcentre.entity.AuthUser;
-import uz.learn.learningcentre.exceptions.NotFoundException;
 import uz.learn.learningcentre.property.ServerProperties;
-import uz.learn.learningcentre.repository.AuthUserRepository;
+import uz.learn.learningcentre.repository.authUser.AuthUserRepository;
 import uz.learn.learningcentre.response.AppErrorDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.base.BaseService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @Slf4j
 @Service

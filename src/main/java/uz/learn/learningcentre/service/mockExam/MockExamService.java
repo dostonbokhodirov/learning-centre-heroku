@@ -2,7 +2,6 @@ package uz.learn.learningcentre.service.mockExam;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import uz.learn.learningcentre.criteria.ExamCriteria;
 import uz.learn.learningcentre.criteria.mockExam.MockExamCriteria;
 import uz.learn.learningcentre.dto.mockExam.MockExamCreateDto;
 import uz.learn.learningcentre.dto.mockExam.MockExamDto;
