@@ -1,5 +1,6 @@
 package uz.learn.learningcentre.service.file;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,6 @@ import uz.learn.learningcentre.validator.FileValidator;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @Service
@@ -30,7 +30,7 @@ public class FileUploadService extends AbstractService<FileMapper, FileValidator
         implements GenericCrudController<PictureCreateDto, PictureUpdateDto>, GenericService<PictureDto, AbstractCriteria> {
 
 
-    public FileUploadService( FileMapper mapper , FileValidator validator , FileRepository repository ) {
+    public FileUploadService( @Qualifier( "fileMapperImpl" ) FileMapper mapper , FileValidator validator , FileRepository repository ) {
         super( mapper , validator , repository );
     }
 

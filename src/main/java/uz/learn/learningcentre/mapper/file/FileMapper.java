@@ -6,7 +6,6 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import uz.learn.learningcentre.dto.pictures.PictureDto;
 import uz.learn.learningcentre.entity.Picture;
 import uz.learn.learningcentre.mapper.base.BaseMapper;
 
@@ -21,9 +20,6 @@ public interface FileMapper extends BaseMapper {
 
     @Mapping( target = "content", source = "dto.bytes" )
     Picture fromDto( MultipartFile dto ,@MappingTarget Picture picture ) throws IOException;
-
-    @Mapping( target = "file.bytes", source = "entity.content" )
-    PictureDto toDto( Picture entity );
 
 
 
