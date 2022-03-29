@@ -43,7 +43,6 @@ public class MockExamService extends AbstractService<MockExamMapper, MockExamVal
     public ResponseEntity<DataDto<Long>> create(MockExamCreateDto mockExamCreateDto) {
         try {
             validator.validOnCreate(mockExamCreateDto);
-//            repository.updateEnabled();
             MockExam mockExam = mapper.fromCreateDto(mockExamCreateDto);
             MockExam save = repository.save(mockExam);
             return new ResponseEntity<>(new DataDto<>(save.getId()));

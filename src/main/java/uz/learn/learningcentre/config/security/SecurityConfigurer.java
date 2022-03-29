@@ -15,6 +15,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import uz.learn.learningcentre.config.security.filters.CustomAuthenticationFilter;
+import uz.learn.learningcentre.config.security.filters.CustomAuthorizationFilter;
 import uz.learn.learningcentre.service.AuthService;
 
 import java.util.Arrays;
@@ -51,8 +53,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest().authenticated();
 
-//        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
-//        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
 

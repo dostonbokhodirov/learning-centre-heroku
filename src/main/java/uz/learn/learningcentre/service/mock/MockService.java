@@ -34,6 +34,11 @@ public class MockService extends AbstractService<MockMapper, MockValidator, Mock
         super(mapper, validator, repository);
     }
 
+    public Long findById() {
+        Optional<Long> lastMockId = repository.findId();
+        return lastMockId.orElse(null);
+    }
+
 
     @Override
     public ResponseEntity<DataDto<MockDto>> get(Long id) {
@@ -81,7 +86,6 @@ public class MockService extends AbstractService<MockMapper, MockValidator, Mock
     }
 
 
-
     @Override
     public ResponseEntity<DataDto<Long>> update(MockUpdateDto mockUpdateDto) {
         try {
@@ -89,10 +93,10 @@ public class MockService extends AbstractService<MockMapper, MockValidator, Mock
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate localDate = LocalDate.parse(mockUpdateDto.getDate(), formatter);
 
-            Optional<Mock> byId = repository.findById(mockUpdateDto.getId());
+            Optional<Mock> optionalMock = repository.findById(mockUpdateDto.getId());
 
-            if (byId.isPresent()) {
-                Mock mock = mapper.fromUpdateDto(mockUpdateDto, byId.get());
+            if (optionalMock.isPresent()) {
+                Mock mock = mapper.fromUpdateDto(mockUpdateDto, optionalMock.get());
                 mock.setDate(localDate);
                 Mock save = repository.save(mock);
                 return new ResponseEntity<>(new DataDto<>(save.getId()));
