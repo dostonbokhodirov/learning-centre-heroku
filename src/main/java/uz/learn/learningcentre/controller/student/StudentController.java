@@ -74,10 +74,8 @@ public class StudentController extends AbstractController<StudentService> implem
     }
 
     @RequestMapping(value = "/random/students", method = RequestMethod.GET)
-    public ResponseEntity<DataDto<List<StudentDto>>> getTenRandomStudents(@RequestParam(value = "count")
-                                                                          @Min(10) Integer count) {
+    public ResponseEntity<DataDto<List<StudentDto>>> getTenRandomStudents(@RequestParam(value = "count") @Min(10) Integer count) {
         List<StudentDto> list = service.getRandomList(count);
-
         return new ResponseEntity<>(new DataDto<>(list));
     }
 }
