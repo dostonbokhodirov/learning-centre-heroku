@@ -62,7 +62,6 @@ public class FileUploadService extends AbstractService<FileMapper, FileValidator
 
     @Override
     public ResponseEntity<DataDto<Boolean>> delete( Long id ) {
-        //// TODO: 3/28/2022  CHeck  qilish kera
         repository.deleteById( id );
         return new ResponseEntity<>( new DataDto<>( true ) );
     }
@@ -73,14 +72,15 @@ public class FileUploadService extends AbstractService<FileMapper, FileValidator
         return new ResponseEntity<>( new DataDto<>( true ) );
     }
 
-    public void getPicture( Long id , HttpServletResponse response ) throws IOException {
-        Picture pictureById = repository.findById( id ).orElseThrow( () -> {
-            throw new NotFoundException( "Picture not found" );
-        } );
-        String contentType = pictureById.getContentType();
-        response.setContentType( contentType );
-        response.setHeader( HttpHeaders.CONTENT_DISPOSITION , "attachment;filename=\"" + pictureById.getName() + "\"" );
-        FileCopyUtils.copy( pictureById.getContent() , response.getOutputStream() );
+    public ResponseEntity<DataDto<?>> getPicture( Long id , HttpServletResponse response ) throws IOException {
+            Picture pictureById = repository.findById( id ).orElseThrow( () -> {
+                throw new NotFoundException( "Picture not found " );
+            } );
+            String contentType = pictureById.getContentType();
+            response.setContentType( contentType );
+            response.setHeader( HttpHeaders.CONTENT_DISPOSITION , "attachment;filename=\"" + pictureById.getName() + "\"" );
+            FileCopyUtils.copy( pictureById.getContent() , response.getOutputStream() );
+        return null;
     }
 
 

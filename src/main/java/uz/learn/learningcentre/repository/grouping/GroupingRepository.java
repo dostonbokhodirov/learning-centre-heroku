@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Repository
-public interface GroupingRepository extends JpaRepository<Grouping, Long>, BaseRepository, BaseMapper {
+public interface GroupingRepository extends JpaRepository<Grouping, Long>, BaseRepository {
 
     @Query( value = "select * from grouping.grouping t where t.id=:group_id", nativeQuery = true )
     Optional<Grouping> findByIdWithoutStudent( @Param( "group_id" ) Long id );

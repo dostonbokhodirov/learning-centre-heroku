@@ -1,10 +1,11 @@
 package uz.learn.learningcentre.service.grouping;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.learn.learningcentre.criteria.grouping.GroupingCriteria;
 import uz.learn.learningcentre.dto.grouping.GroupingCreateDto;
@@ -12,9 +13,8 @@ import uz.learn.learningcentre.dto.grouping.GroupingDto;
 import uz.learn.learningcentre.dto.grouping.GroupingUpdateDto;
 import uz.learn.learningcentre.entity.Grouping;
 import uz.learn.learningcentre.exceptions.NotFoundException;
-import uz.learn.learningcentre.mapper.GroupingMapper;
+import uz.learn.learningcentre.mapper.grouping.GroupingMapper;
 import uz.learn.learningcentre.repository.grouping.GroupingRepository;
-import uz.learn.learningcentre.response.AppErrorDto;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.base.AbstractService;
@@ -30,8 +30,8 @@ public class GroupingService extends AbstractService<GroupingMapper, GroupingVal
         implements GenericCrudService<GroupingDto, GroupingCreateDto, GroupingUpdateDto>,
         GenericService<GroupingDto, GroupingCriteria> {
 
-
-    public GroupingService( GroupingMapper mapper , GroupingValidator validator , GroupingRepository repository ) {
+    @Autowired
+    public GroupingService( @Qualifier( "groupingMapperImpl" ) GroupingMapper mapper , GroupingValidator validator , GroupingRepository repository ) {
         super( mapper , validator , repository );
     }
 
@@ -78,11 +78,10 @@ public class GroupingService extends AbstractService<GroupingMapper, GroupingVal
             } );
             GroupingDto groupingDto = mapper.toDto( groupingById );
             return new ResponseEntity<>( new DataDto<>( groupingDto ) );
-        /*} catch ( NotFoundException e ) {
-            return new ResponseEntity<>
-                    ( new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND , e.getMessage() ) ) );
-
-        }*/
+//        } catch ( NotFoundException e ) {
+//            return new ResponseEntity<>
+//                    ( new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND , e.getMessage() ) ) );
+//        }
      }
 
     @Override
@@ -93,4 +92,5 @@ public class GroupingService extends AbstractService<GroupingMapper, GroupingVal
         List<GroupingDto> dtos = mapper.toDto( list );
         return new ResponseEntity<>( new DataDto<>( dtos ) );
     }
+
 }

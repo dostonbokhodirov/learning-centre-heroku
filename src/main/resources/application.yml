@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/learning-centre
+    url: jdbc:postgresql://localhost:5432/learning_centre
     username: postgres
     password: 2001
   jpa:
@@ -18,6 +18,10 @@ spring:
   data:
     rest:
       default-page-size: 10
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
 
 springdoc:
   swagger-ui:
