@@ -10,7 +10,7 @@ import uz.learn.learningcentre.dto.grouping.GroupingDto;
 import uz.learn.learningcentre.dto.grouping.GroupingUpdateDto;
 import uz.learn.learningcentre.entity.Grouping;
 import uz.learn.learningcentre.exceptions.NotFoundException;
-import uz.learn.learningcentre.mapper.GroupingMapper;
+import uz.learn.learningcentre.mapper.grouping.GroupingMapper;
 import uz.learn.learningcentre.repository.grouping.GroupingRepository;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
