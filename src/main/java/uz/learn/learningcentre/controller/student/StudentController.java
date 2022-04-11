@@ -13,7 +13,6 @@ import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.student.StudentService;
 
-import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
@@ -30,8 +29,7 @@ public class StudentController extends AbstractController<StudentService> implem
 
     @Override
     @PostMapping("/create")
-    public ResponseEntity<DataDto<Long>> create(@Valid
-                                                @ModelAttribute StudentCreateDto studentCreateDto) {
+    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody StudentCreateDto studentCreateDto) {
         return service.create(studentCreateDto);
     }
 

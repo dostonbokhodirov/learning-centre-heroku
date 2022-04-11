@@ -19,7 +19,7 @@ public class AuthUserUpdateDto extends GenericDto {
 
     private Short experienceYear;
 
-    private List<Subject> subjects;
+    private List<Long> subjects;
 
     private AuthRole role;
 

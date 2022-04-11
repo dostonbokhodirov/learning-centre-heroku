@@ -1,19 +1,19 @@
 package uz.learn.learningcentre.controller.authUser;
 
+import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 import uz.learn.learningcentre.controller.base.AbstractController;
 import uz.learn.learningcentre.controller.base.GenericController;
 import uz.learn.learningcentre.controller.base.GenericCrudController;
 import uz.learn.learningcentre.criteria.authUser.AuthUserCriteria;
-import uz.learn.learningcentre.dto.auth.AuthUserCreateDto;
-import uz.learn.learningcentre.dto.auth.AuthUserDto;
-import uz.learn.learningcentre.dto.auth.AuthUserUpdateDto;
-import uz.learn.learningcentre.dto.auth.SessionDto;
+import uz.learn.learningcentre.dto.auth.*;
 import uz.learn.learningcentre.response.DataDto;
 import uz.learn.learningcentre.response.ResponseEntity;
 import uz.learn.learningcentre.service.AuthService;
 import uz.learn.learningcentre.service.authUser.AuthUserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 
@@ -32,17 +32,15 @@ public class AuthUserController extends AbstractController<AuthUserService>
 
 
     @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public ResponseEntity<DataDto<SessionDto>> getToken(@RequestBody AuthUserDto dto) {
+    public ResponseEntity<DataDto<SessionDto>> getToken(@RequestBody LoginDto dto) {
         return authService.getToken(dto);
     }
 
-//    @RequestMapping(value = "/refresh-token", method = RequestMethod.GET)
-//    public ResponseEntity<DataDto<SessionDto>> getToken(HttpServletRequest request, HttpServletResponse response) {
-//
-//        return new ResponseEntity<>(new DataDto<>());
-//        authService.getRefreshToken(request, response);
-//
-//    }
+    @SneakyThrows
+    @RequestMapping(value = "/refresh-token", method = RequestMethod.GET)
+    public ResponseEntity<DataDto<SessionDto>> getToken(HttpServletRequest request, HttpServletResponse response) {
+        return new ResponseEntity<>(new DataDto<>(authService.getRefreshToken(request, response).getData().getData()));
+    }
 
 
     @Override

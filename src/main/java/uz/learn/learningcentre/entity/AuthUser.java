@@ -29,11 +29,11 @@ public class AuthUser extends Auditable implements BaseEntity {
     private Short experienceYear;
 
     @ManyToMany(fetch = FetchType.EAGER)
-   /* @JoinTable(
+    @JoinTable(
             schema = "auth",
             name = "mentor_subject",
             joinColumns =  { @JoinColumn(name = "mentor_id") } ,
-            inverseJoinColumns = { @JoinColumn(name = "subject_id") })*/
+            inverseJoinColumns = { @JoinColumn(name = "subject_id") })
     private List<Subject> subjects;
 
     @Enumerated(EnumType.STRING)

@@ -3,24 +3,25 @@ package uz.learn.learningcentre.dto.mockExam;
 import lombok.Getter;
 import lombok.Setter;
 import uz.learn.learningcentre.dto.base.BaseDto;
+import uz.learn.learningcentre.entity.Speciality;
+
+import java.util.List;
 
 @Getter
 @Setter
 public class MockExamCreateDto implements BaseDto {
 
+
     /**
      * Bu Mock Exam create bo'lganda home pagega elon chiqishi uchun
      */
 
-    private String name;
+    private List<String> speciality;
 
-    private String date;
+    private String studentName;
 
-    private String location;
+    private String phoneNumber;
 
-    private String begin;
-
-    private String end;
-
+    private Long mockId;
 
 }

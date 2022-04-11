@@ -32,7 +32,6 @@ public class StudentService extends AbstractService<StudentMapper, StudentValida
     public ResponseEntity<DataDto<Long>> create(StudentCreateDto studentCreateDto) {
         Student student = mapper.fromCreateDto(studentCreateDto);
         Student save = repository.save(student);
-
         return new ResponseEntity<>(new DataDto<>(save.getId()));
     }
 

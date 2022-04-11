@@ -81,4 +81,8 @@ public class PaymentMockService extends AbstractService<PaymentMockMapper, Payme
     }
 
 
+    public boolean findByStudentId(Long studentId) {
+        return repository.findPaymentMockByStudentId(studentId);
+    }
+
 }

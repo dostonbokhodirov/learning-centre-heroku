@@ -41,6 +41,7 @@ public class AttendanceService extends AbstractService<AttendanceMapper, Attenda
 
         AttendanceContainer attendanceContainer = new AttendanceContainer();
         attendanceContainer.setGroupId(attendanceCreateDto.getGroupId());
+
         containerRepository.save(attendanceContainer);
 
         Attendance attendance = repository.save(mapper.fromCreateDto(attendanceCreateDto));

@@ -20,4 +20,8 @@ public interface PaymentMockRepository extends JpaRepository<PaymentMock, Long>,
     @Query(value = "update payment.payment_mock set deleted = true where id = :id", nativeQuery = true)
     void softDelete(Long id);
 
+
+    boolean findPaymentMockByStudentId(Long studentId);
+
+
 }

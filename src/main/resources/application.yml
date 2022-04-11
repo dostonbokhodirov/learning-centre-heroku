@@ -4,6 +4,10 @@ spring:
     url: jdbc:postgresql://ec2-34-231-63-30.compute-1.amazonaws.com:5432/d4mpft0kpr8fv
     username: kjgaxubixgtogm
     password: 45d1cac5b8854b5ae6661252776eab45e471ed1ee4d1041b82f41b5930dbaa58
+
+#    url: jdbc:postgresql://localhost:5432/learning_centre
+#    username: doston
+#    password: doston123
   jpa:
     show-sql: true
     hibernate:
@@ -18,6 +22,10 @@ spring:
   data:
     rest:
       default-page-size: 10
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
 
 springdoc:
   swagger-ui:

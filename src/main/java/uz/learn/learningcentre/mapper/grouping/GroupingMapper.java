@@ -1,18 +1,20 @@
-package uz.learn.learningcentre.mapper;
+package uz.learn.learningcentre.mapper.grouping;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
+import org.springframework.stereotype.Component;
 import uz.learn.learningcentre.dto.grouping.GroupingCreateDto;
 import uz.learn.learningcentre.dto.grouping.GroupingDto;
 import uz.learn.learningcentre.dto.grouping.GroupingUpdateDto;
 import uz.learn.learningcentre.entity.Grouping;
 import uz.learn.learningcentre.mapper.base.GenericMapper;
+import uz.learn.learningcentre.mapper.student.StudentMapper;
 import uz.learn.learningcentre.validator.base.BaseValidator;
 
 import java.util.List;
-
+@Component
 @Mapper( componentModel = "spring", uses = StudentMapper.class, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE )
 public interface GroupingMapper extends GenericMapper<
         Grouping,
